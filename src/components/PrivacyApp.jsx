@@ -146,7 +146,7 @@ function Nav() {
         }} onClick={() => setMenuOpen(m => !m)} className="nav-burger"><Icon name={menuOpen ? 'x' : 'menu'} size={26} /></button>
       </div>
 
-      <style>{`@media (max-width:900px){ .nav-burger{ display:inline-flex !important; } }`}</style>
+      <style>{`@media (max-width:900px){ .nav-burger{ display:inline-flex !important; } } .nav-burger .lucide{ width:50px !important; height:50px !important; }`}</style>
       {menuOpen && (
         <div style={{
           position: 'absolute', top: '100%', left: 0, right: 0,
@@ -253,7 +253,7 @@ function Footer() {
       <style>{`
         @media (max-width: 900px){ .foot-grid{ grid-template-columns: 1fr 1fr !important; } }
         @media (max-width: 520px){ .foot-grid{ grid-template-columns: 1fr !important; } }
-        @media (max-width: 680px){ .foot-cta{ grid-template-columns: 1fr !important; } .foot-cta > img { display: none !important; } }
+        @media (max-width: 680px){ .foot-cta{ grid-template-columns: 1fr !important; } .foot-cta > img { display: block !important; height: 220px !important; width: 100% !important; order: -1; } }
       `}</style>
     </footer>
   );

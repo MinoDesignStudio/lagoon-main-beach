@@ -494,7 +494,7 @@ function Nav() {
         }} onClick={() => setMenuOpen(m => !m)} className="nav-burger"><Icon name={menuOpen ? 'x' : 'menu'} size={26} /></button>
       </div>
 
-      <style>{`@media (max-width:900px){ .nav-burger{ display:inline-flex !important; } }`}</style>
+      <style>{`@media (max-width:900px){ .nav-burger{ display:inline-flex !important; } } .nav-burger .lucide{ width:50px !important; height:50px !important; }`}</style>
       {menuOpen && (
         <div style={{
           position: 'absolute', top: '100%', left: 0, right: 0,
@@ -532,7 +532,11 @@ function HeroServices() {
   return (
     <section id="top" style={{ position: 'relative' }}>
       {/* ---------- HERO ---------- */}
-      <div style={{
+      <style>{`@media (max-width: 760px){
+        .home-hero{ background-size: cover !important; background-position: center top !important; }
+        .home-hero-scrim{ height: 100% !important; background: linear-gradient(180deg, rgba(20,30,38,0.62) 0%, rgba(20,30,38,0.40) 38%, rgba(20,30,38,0.30) 100%) !important; }
+      }`}</style>
+      <div className="home-hero" style={{
         position: 'relative',
         display: 'flex', alignItems: 'stretch',
         backgroundImage: `url("${B}/img/home-embedded-4.jpg")`,
@@ -544,7 +548,7 @@ function HeroServices() {
 
 
         {/* left-to-right scrim - image area only, stops at image bottom */}
-        <div aria-hidden="true" style={{
+        <div aria-hidden="true" className="home-hero-scrim" style={{
           position: 'absolute', top: 0, left: 0, right: 0,
           height: 'calc(100vw * 0.367)',
           background: 'linear-gradient(to right, rgba(20,30,38,0.60) 0%, rgba(20,30,38,0.35) 45%, rgba(20,30,38,0) 72%)',
@@ -718,7 +722,8 @@ function Owners() {
 function QuoteBand() {
   return (
       <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--lagoon-ocean-mist)' }}>
-        <div style={{
+        <style>{`@media (max-width: 1024px){ .quote-band{ background-attachment: scroll !important; } }`}</style>
+        <div className="quote-band" style={{
           position: 'relative',
           minHeight: 'clamp(320px, 40vw, 460px)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -975,7 +980,7 @@ function Footer() {
       <style>{`
         @media (max-width: 900px){ .foot-grid{ grid-template-columns: 1fr 1fr !important; } }
         @media (max-width: 520px){ .foot-grid{ grid-template-columns: 1fr !important; } }
-        @media (max-width: 680px){ .foot-cta{ grid-template-columns: 1fr !important; } .foot-cta > img { display: none !important; } }
+        @media (max-width: 680px){ .foot-cta{ grid-template-columns: 1fr !important; } .foot-cta > img { display: block !important; height: 220px !important; width: 100% !important; order: -1; } }
       `}</style>
     </footer>
   );

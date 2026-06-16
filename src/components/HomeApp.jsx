@@ -439,7 +439,7 @@ function Nav() {
   }, []);
 
   const links = ['Rentals', 'Owners', 'How we work', 'About', 'Contact'];
-  const linkHrefs = {};
+  const linkHrefs = { Rentals: `${B}/rentals/`, Owners: `${B}/owners/` };
 
   const onHero = !scrolled; // transparent white nav over the hero image
 

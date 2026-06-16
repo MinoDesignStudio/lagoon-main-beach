@@ -142,8 +142,8 @@ function Nav() {
   const onHero = false;
 
   const navLinks = [
-    { label: 'Rentals', href: `${B}/rentals/` },
-    { label: 'Owners', href: '#top' },
+    { label: 'Rentals', href: '#top' },
+    { label: 'Owners', href: `${B}/owners/` },
     { label: 'How we work', href: '#' },
     { label: 'About', href: '#' },
     { label: 'Contact', href: '#contact' },
@@ -590,7 +590,7 @@ function FAQSection() {
   );
 }
 
-function OwnersApp() {
+function RentalsApp() {
   React.useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('in')),
@@ -617,4 +617,4 @@ function OwnersApp() {
   );
 }
 
-export default OwnersApp;
+export default RentalsApp;

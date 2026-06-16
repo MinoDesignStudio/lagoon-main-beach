@@ -144,7 +144,7 @@ function Nav() {
   const navLinks = [
     { label: 'Rentals', href: `${B}/rentals/` },
     { label: 'Owners', href: '#top' },
-    { label: 'How we work', href: '#' },
+    { label: 'How we work', href: `${B}/how-we-work/` },
     { label: 'About', href: '#' },
     { label: 'Contact', href: '#contact' },
   ];

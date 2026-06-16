@@ -441,6 +441,41 @@ function FeaturedResidences() {
     </section>
   );
 }
+/* Four-step tenant process, styled in the Lagoon palette. */
+function TenantJourney() {
+  const steps = [
+    { n: '1', title: 'Search',   desc: 'Browse available apartments' },
+    { n: '2', title: 'Apply',    desc: 'Submit your application' },
+    { n: '3', title: 'Approval', desc: 'Quick, clear approval process' },
+    { n: '4', title: 'Move In',  desc: 'Welcome to Lagoon' },
+  ];
+  return (
+    <section style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(4rem, 7vw, 6.5rem)' }}>
+      <Wrap>
+        <div className="reveal" style={{ textAlign: 'center', marginBottom: 'clamp(2.4rem, 5vw, 4rem)' }}>
+          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: 0 }}>Your Tenant Journey</h2>
+        </div>
+        <div className="reveal journey-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'clamp(24px, 3vw, 40px)' }}>
+          {steps.map((s) => (
+            <div key={s.n} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <div style={{
+                width: 74, height: 74, borderRadius: '50%',
+                background: 'var(--lagoon-tide)', color: 'var(--lagoon-ocean-mist)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: 'var(--font-display)', fontSize: 30, fontWeight: 400, lineHeight: 1,
+                boxShadow: 'var(--shadow-brand)', marginBottom: 22,
+              }}>{s.n}</div>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem, 1.5vw, 1.3rem)', fontWeight: 400, color: 'var(--lagoon-tide)', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 8px' }}>{s.title}</h3>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', fontWeight: 300, lineHeight: 1.55, margin: 0, maxWidth: '20ch' }}>{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </Wrap>
+      <style>{`@media(max-width:760px){.journey-grid{grid-template-columns:1fr 1fr !important;row-gap:2.8rem !important;}}@media(max-width:430px){.journey-grid{grid-template-columns:1fr !important;}}`}</style>
+    </section>
+  );
+}
+
 function ServicesGrid() {
   const svgs = {
     megaphone: '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
@@ -677,6 +712,7 @@ function RentalsApp() {
         <RentalsHero />
         <BeachsideIntro />
         <FeaturedResidences />
+        <TenantJourney />
         <ServicesGrid />
         <BenefitsBand />
         <Testimonials />

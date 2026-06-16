@@ -345,7 +345,7 @@ function ProactiveIntro() {
     <section style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(4rem, 7vw, 6rem)' }}>
       <Wrap>
         <div className="reveal" style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
-          <Eyebrow color="coral" align="center" rule style={{ marginBottom: 24 }}>Proactive Care. Premium Results.</Eyebrow>
+          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: '0 0 0.5em' }}>Proactive Care, Premium Results</h2>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)', lineHeight: 1.8, color: 'var(--text-muted)', fontWeight: 300, margin: '0 0 2rem' }}>
             At Lagoon, we don't just manage properties - we protect your asset, attract quality tenants, and keep you informed every step of the way. Our hands-on approach means fewer surprises and better returns.
           </p>

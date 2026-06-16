@@ -441,6 +441,106 @@ function FeaturedResidences() {
     </section>
   );
 }
+/* "Why Rent at Lagoon" lifestyle gallery slider (shared layout with the homepage). */
+function WhyRentAtLagoon() {
+  const reasons = [
+    { title: 'Prime Location', desc: 'Steps from the beach and Tedder Avenue.', image: `${B}/img/home-embedded-5.jpg` },
+    { title: 'Quality Building', desc: 'Well-maintained, with modern finishes throughout.', image: `${B}/img/home-embedded-6.jpg` },
+    { title: 'Resort Amenities', desc: 'Pool, gym, and beautifully landscaped grounds.', image: `${B}/img/home-embedded-7.jpg` },
+    { title: 'Community', desc: 'Friendly, established long-term residents.', image: `${B}/img/home-embedded-8.jpg`, pos: 'center 72%' },
+  ];
+
+  const [active, setActive] = React.useState(0);
+  const go = (n) => setActive((n + reasons.length) % reasons.length);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => setActive((a) => (a + 1) % reasons.length), 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <React.Fragment>
+      {/* Cream to white wave transition */}
+      <div style={{ background: 'var(--lagoon-ocean-mist)', lineHeight: 0 }}>
+        <Wave fill="var(--lagoon-white)" />
+      </div>
+
+      <section style={{ background: 'var(--lagoon-white)', paddingBlock: 'clamp(3rem, 6vw, 6.5rem)', overflow: 'hidden' }}>
+        <div style={{
+          display: 'grid', gridTemplateColumns: 'minmax(0, 0.78fr) minmax(0, 1fr)',
+          gap: 'clamp(2rem, 4vw, 4.5rem)', alignItems: 'center',
+          paddingLeft: 'calc(max(0px, (100vw - 1320px) / 2) + clamp(1.25rem, 4vw, 2.75rem))',
+        }} className="owners-grid">
+            <div className="reveal">
+              <div className="lagoon-eyebrow" style={{ color: 'var(--text-coral)', marginBottom: 18 }}>Beachside Living</div>
+              <h2 style={{ fontSize: 'clamp(2rem, 3.6vw, 3rem)', margin: '0 0 0.6em', color: 'var(--lagoon-tide)' }}>Why Rent at Lagoon</h2>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '50ch', marginBottom: 0 }}>
+                Lagoon Main Beach puts you steps from the sand and the cafes of Tedder Avenue, in a well-maintained building with resort-style amenities and a friendly community of long-term residents. Every apartment is cared for and move-in ready, so you can simply settle in and enjoy relaxed coastal living.
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 12, maxWidth: 300, marginTop: 'clamp(1.6rem, 3vw, 2.4rem)' }} className="owners-cta">
+                <Button as="a" href="#contact" variant="primary" size="md" fullWidth style={{ whiteSpace: 'nowrap' }}>Enquire or Book a Viewing</Button>
+              </div>
+            </div>
+
+            <div className="reveal" style={{ position: 'relative' }}>
+              <div style={{
+                position: 'relative', overflow: 'hidden', height: 'clamp(340px, 33vw, 470px)',
+                boxShadow: 'var(--shadow-lg)', background: 'var(--lagoon-swell)',
+              }}>
+                {reasons.map((r, i) => (
+                  <div key={r.title} aria-hidden={i !== active} style={{
+                    position: 'absolute', inset: 0,
+                    backgroundImage: `url("${r.image}")`, backgroundSize: 'cover', backgroundPosition: r.pos || 'center',
+                    opacity: i === active ? 1 : 0,
+                    transform: i === active ? 'scale(1.0)' : 'scale(1.04)',
+                    transition: 'opacity 0.7s var(--ease-out), transform 1.4s var(--ease-out)',
+                  }} />
+                ))}
+
+                <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(28,38,44,0) 38%, rgba(28,38,44,0.72) 100%)' }} />
+
+                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: 'clamp(1.6rem, 3vw, 2.4rem)', color: 'var(--lagoon-ocean-mist)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
+                    <span style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 12, letterSpacing: '0.22em' }}>
+                      {String(active + 1).padStart(2, '0')}
+                    </span>
+                    <span style={{ width: 26, height: 1, background: 'currentColor', opacity: 0.6 }} />
+                    <span style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 12, letterSpacing: '0.22em', opacity: 0.7 }}>
+                      {String(reasons.length).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <h3 className="lagoon-display" style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2.1rem)', margin: '0 0 6px', color: 'var(--lagoon-ocean-mist)' }}>{reasons[active].title}</h3>
+                  <p style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: 'var(--text-md)', lineHeight: 1.5, margin: 0, maxWidth: '40ch', opacity: 0.92 }}>{reasons[active].desc}</p>
+                </div>
+
+                <div style={{ position: 'absolute', bottom: 'clamp(1.4rem, 2.6vw, 2.2rem)', right: 'clamp(1.4rem, 2.6vw, 2.2rem)', display: 'flex', gap: 6 }}>
+                  {[['chevron-left', -1], ['chevron-right', 1]].map(([ic, d]) => (
+                    <button key={ic} aria-label={d < 0 ? 'Previous' : 'Next'} onClick={() => go(active + d)} style={{
+                      width: 48, height: 48, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                      cursor: 'pointer', border: 'none', background: 'none', padding: 0,
+                      color: 'var(--lagoon-ocean-mist)', filter: 'drop-shadow(0 2px 6px rgba(20,28,32,0.55))',
+                      transition: 'transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out)', opacity: 0.92,
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.opacity = 1; e.currentTarget.style.transform = d < 0 ? 'translateX(-3px)' : 'translateX(3px)'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.92; e.currentTarget.style.transform = 'none'; }}>
+                      <Icon name={ic} size={34} stroke={1.6} color="var(--lagoon-ocean-mist)" />
+                    </button>
+                  ))}
+                </div>
+                </div>
+            </div>
+          </div>
+      </section>
+
+      <style>{`
+        @media (max-width: 860px){
+          .owners-grid{ grid-template-columns: 1fr !important; padding-right: var(--gutter) !important; }
+        }
+      `}</style>
+    </React.Fragment>
+  );
+}
+
 /* Four-step tenant process, styled in the Lagoon palette. */
 function TenantJourney() {
   const steps = [
@@ -476,177 +576,49 @@ function TenantJourney() {
   );
 }
 
-function ServicesGrid() {
-  const svgs = {
-    megaphone: '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
-    userCheck: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/>',
-    clipboard: '<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14l2 2 4-4"/>',
-    wrench:    '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
-    dollar:    '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
-    barChart:  '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
-  };
-  function BIcon({ svg }) {
-    return (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: svg }} />
-    );
-  }
-  const services = [
-    { svg: svgs.megaphone, title: 'Marketing & Leasing',       desc: 'Professional photography, targeted listings, and competitive market positioning to fill vacancies fast.' },
-    { svg: svgs.userCheck, title: 'Tenant Screening',          desc: 'Rigorous vetting process including employment, rental history, and reference checks for peace of mind.' },
-    { svg: svgs.clipboard, title: 'Inspections & Compliance',  desc: 'Regular routine inspections, entry/exit condition reports, and full legislative compliance.' },
-    { svg: svgs.wrench,    title: 'Maintenance Coordination',  desc: 'Trusted network of preferred contractors. Responsive issue resolution to protect your asset.' },
-    { svg: svgs.dollar,    title: 'Rent Collection & Arrears', desc: 'Consistent rent collection with proactive arrears management. Your income, on time.' },
-    { svg: svgs.barChart,  title: 'Owner Reporting',           desc: 'Clear monthly statements, open communication, and transparent financial reporting.' },
-  ];
-  return (
-    <section style={{ background: 'var(--lagoon-white)', paddingBlock: 'clamp(4rem, 7vw, 7rem)' }}>
-      <Wrap>
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 0.85fr) minmax(0, 1.15fr)', gap: 'clamp(3rem, 5vw, 6rem)', alignItems: 'start' }} className="sg-grid">
-          <div className="reveal" style={{ position: 'sticky', top: 80 }}>
-            <div className="lagoon-eyebrow" style={{ color: 'var(--text-coral)', marginBottom: 18 }}>What We Do</div>
-            <h2 style={{ fontSize: 'clamp(2.2rem, 3.8vw, 3.2rem)', margin: '0 0 0.6em', color: 'var(--lagoon-tide)', lineHeight: 1.1 }}>Full-service management, handled.</h2>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '42ch', margin: '0 0 2rem' }}>
-              Everything your property needs, taken care of. So you don't have to think about it.
-            </p>
-            <Button as="a" href="#contact" variant="primary" size="md">REQUEST A PROPOSAL</Button>
-          </div>
-          <div className="reveal sg-items" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'clamp(1rem, 1.75vw, 1.5rem) clamp(2rem, 4vw, 3rem)' }}>
-            {services.map((s) => (
-              <div key={s.title} style={{ paddingTop: 'clamp(1.2rem, 2vw, 1.8rem)', borderTop: '1px solid var(--border-light)' }}>
-                <div style={{ marginBottom: 14, color: 'var(--lagoon-dusty-coral)' }}><BIcon svg={s.svg} /></div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.05rem, 1.4vw, 1.2rem)', fontWeight: 400, color: 'var(--lagoon-tide)', margin: '0 0 8px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{s.title}</h3>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.65, margin: 0 }}>{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Wrap>
-      <style>{`@media (max-width: 820px){ .sg-grid{ grid-template-columns: 1fr !important; } .sg-grid > div:first-child { position: static !important; } } @media (max-width: 480px){ .sg-items{ grid-template-columns: 1fr !important; } }`}</style>
-    </section>
-  );
-}
-function BenefitsBand() {
-  const clusters = [
-    { title: 'Financial Returns', items: ['Competitive rental yields through strategic pricing', 'Minimised vacancy periods with proactive marketing', 'Cost-effective maintenance through preferred contractors', 'Transparent fee structure with no hidden costs'] },
-    { title: 'Peace of Mind', items: ['Fully managed service - we handle everything', 'Regular inspections protect your asset long-term', 'Quality tenants reduce risk and wear', 'Responsive communication when you need it'] },
-  ];
-  return (
-    <section style={{ background: 'var(--lagoon-tide)', paddingBlock: 'clamp(4rem, 7vw, 7rem)' }}>
-      <Wrap>
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-          <div className="lagoon-eyebrow" style={{ color: 'var(--lagoon-dusty-coral)', marginBottom: 18 }}>How Owners Benefit</div>
-          <h2 style={{ fontSize: 'clamp(2rem, 3.6vw, 3rem)', color: 'var(--lagoon-ocean-mist)', margin: 0, lineHeight: 1.1 }}>Your investment, in good hands.</h2>
-        </div>
-        <div className="reveal bb-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(2rem, 4vw, 4rem)' }}>
-          {clusters.map((c) => (
-            <div key={c.title}>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.2rem, 1.8vw, 1.5rem)', color: 'var(--lagoon-ocean-mist)', margin: '0 0 1.2rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{c.title}</h3>
-              <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
-                {c.items.map((item) => (
-                  <li key={item} style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'rgba(244,243,239,0.85)', display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                    <span style={{ color: 'var(--lagoon-dusty-coral)', flexShrink: 0, marginTop: 2 }}>&#10003;</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Wrap>
-      <style>{`@media (max-width: 680px){ .bb-grid{ grid-template-columns: 1fr !important; } }`}</style>
-    </section>
-  );
-}
-function Testimonials() {
-  const reviews = [
-    { quote: "Since switching to Lagoon, our apartment has been consistently tenanted with quality residents. The reporting is clear and the team genuinely cares.", name: 'Lagoon Apartment Owner', role: '2 Bedroom Apartment Owner' },
-    { quote: "Professional, responsive, and proactive. I wish I'd found Lagoon years ago. They've made property ownership stress-free.", name: 'Lagoon Apartment Owner', role: '1 Bedroom Apartment Owner' },
-  ];
-  const [active, setActive] = React.useState(0);
-  React.useEffect(() => {
-    const t = setInterval(() => setActive((a) => (a + 1) % reviews.length), 5000);
-    return () => clearInterval(t);
-  }, []);
-  const r = reviews[active];
-  return (
-    <section style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(4rem, 7vw, 7rem)' }}>
-      <Wrap>
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 4vw, 3rem)' }}>
-          <div className="lagoon-eyebrow" style={{ color: 'var(--text-coral)', marginBottom: 18 }}>What Owners Say</div>
-          <h2 style={{ fontSize: 'clamp(2rem, 3.6vw, 3rem)', color: 'var(--lagoon-tide)', margin: 0, lineHeight: 1.1 }}>Trusted by local property owners.</h2>
-        </div>
-        <div className="reveal" style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto' }}>
-          <p style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)', color: 'var(--lagoon-tide)', lineHeight: 1.7, margin: '0 0 1.6rem' }}>"{r.quote}"</p>
-          <div style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 15, color: 'var(--lagoon-tide)' }}>{r.name}</div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: '2rem' }}>
-            {reviews.map((_, i) => (
-              <button key={i} onClick={() => setActive(i)} aria-label={'Testimonial ' + (i + 1)} style={{ width: 10, height: 10, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: active === i ? 'var(--lagoon-tide)' : 'rgba(28,60,60,0.25)', transition: 'background var(--dur-base)' }} />
-            ))}
-          </div>
-        </div>
-      </Wrap>
-    </section>
-  );
-}
-
 function ContactForm() {
-  const field = { fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--lagoon-ocean-mist)', background: 'transparent', border: '1px solid rgba(244,243,239,0.45)', borderRadius: 0, padding: '13px 14px', outline: 'none', width: '100%', boxSizing: 'border-box', display: 'block', appearance: 'auto' };
-  const taStyle = { fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--lagoon-ocean-mist)', background: 'transparent', border: '1px solid rgba(244,243,239,0.45)', borderRadius: 0, padding: '13px 14px', outline: 'none', width: '100%', boxSizing: 'border-box', display: 'block', resize: 'vertical' };
+  const field = { fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--lagoon-ink)', background: 'var(--lagoon-white)', border: '1px solid var(--border-hairline)', borderRadius: 0, padding: '14px 16px', outline: 'none', width: '100%', boxSizing: 'border-box', display: 'block', appearance: 'auto' };
+  const taStyle = { ...field, resize: 'vertical' };
   return (
-    <section id="contact" style={{ background: 'var(--lagoon-tide)', paddingBlock: 'clamp(4rem, 7vw, 7rem)' }}>
+    <section id="contact" style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(4rem, 7vw, 7rem)' }}>
       <Wrap>
-        <div className="reveal cf-outer" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 'clamp(3rem, 6vw, 6rem)', alignItems: 'start' }}>
-          <div>
-            <div className="lagoon-eyebrow" style={{ color: 'var(--lagoon-ocean-mist)', marginBottom: 18 }}>Get In Touch</div>
-            <h2 style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', color: 'var(--lagoon-ocean-mist)', margin: '0 0 1rem', lineHeight: 1.15 }}>Request a Property Management Proposal</h2>
-            <p style={{ fontFamily: 'var(--font-body)', color: 'var(--lagoon-ocean-mist)', fontSize: 'var(--text-md)', lineHeight: 1.7, margin: '0 0 1.5rem' }}>Tell us about your property and we will prepare a tailored management proposal.</p>
-            <a href="#" style={{ display: 'inline-block', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 13, color: 'var(--lagoon-ocean-mist)', border: '1px solid rgba(244,243,239,0.6)', padding: '12px 20px', letterSpacing: '0.08em', textDecoration: 'none' }}>DOWNLOAD OWNER INFORMATION PACK</a>
+        <div className="reveal" style={{ maxWidth: 860, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 4vw, 3rem)' }}>
+            <h2 style={{ fontSize: 'clamp(2rem, 3.6vw, 3rem)', color: 'var(--lagoon-tide)', margin: '0 0 0.6rem', lineHeight: 1.12 }}>Enquire or Book a Viewing</h2>
+            <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', fontSize: 'var(--text-md)', lineHeight: 1.7, margin: 0 }}>Interested in renting at Lagoon Main Beach? Fill in the form and we'll be in touch.</p>
           </div>
           <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-              <input type="text" placeholder="Owner Name" required style={field} />
+            <div className="cf-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+              <input type="text" placeholder="Full Name" required style={field} />
               <input type="tel" placeholder="Phone" style={field} />
             </div>
             <input type="email" placeholder="Email Address" required style={field} />
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-              <select style={field}>
-                <option value="" disabled selected>Suburb</option>
-                <option>Main Beach</option>
-                <option>Surfers Paradise</option>
-                <option>Broadbeach</option>
-                <option>Other</option>
-              </select>
-              <select style={field}>
-                <option value="" disabled selected>Bedrooms</option>
+            <div className="cf-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+              <select style={field} defaultValue="">
+                <option value="" disabled>Bedrooms</option>
                 <option>Studio</option>
                 <option>1 Bedroom</option>
                 <option>2 Bedrooms</option>
                 <option>3 Bedrooms</option>
                 <option>4+ Bedrooms</option>
               </select>
+              <input type="date" aria-label="Preferred viewing date" style={field} />
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-              <select style={field}>
-                <option value="" disabled selected>Current Status</option>
-                <option>Currently tenanted</option>
-                <option>Vacant</option>
-                <option>Self-managed</option>
-                <option>With another agent</option>
-              </select>
-              <select style={field}>
-                <option value="" disabled selected>Preferred Contact Time</option>
-                <option>Morning (8am - 12pm)</option>
-                <option>Afternoon (12pm - 5pm)</option>
-                <option>Evening (5pm - 7pm)</option>
-                <option>Anytime</option>
+            <div className="cf-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+              <input type="text" placeholder="Max Rent per Week (optional)" style={field} />
+              <select style={field} defaultValue="">
+                <option value="" disabled>Inspection Preference</option>
+                <option>Private inspection</option>
+                <option>Open inspection</option>
+                <option>Either</option>
               </select>
             </div>
-            <textarea placeholder="Notes - anything else we should know about your property or goals?" rows="5" style={taStyle}></textarea>
-            <button type="submit" style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 15, color: 'var(--lagoon-tide)', background: 'var(--lagoon-white)', border: 'none', borderRadius: 0, padding: '16px 24px', cursor: 'pointer', width: '100%', letterSpacing: '0.04em' }}>Request Proposal</button>
+            <textarea placeholder="Notes - tell us anything else about what you're looking for" rows="5" style={taStyle}></textarea>
+            <button type="submit" style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 15, color: 'var(--lagoon-ocean-mist)', background: 'var(--lagoon-ink)', border: 'none', borderRadius: 0, padding: '16px 24px', cursor: 'pointer', width: '100%', letterSpacing: '0.04em' }}>Submit Enquiry</button>
           </form>
         </div>
       </Wrap>
-      <style>{`@media (max-width: 720px){ .cf-outer{ grid-template-columns: 1fr !important; } } ::placeholder{ color: rgba(244,243,239,0.6) !important; } select option{ color: var(--lagoon-ink); background: var(--lagoon-white); }`}</style>
+      <style>{`@media (max-width: 560px){ .cf-row{ grid-template-columns: 1fr !important; } } #contact ::placeholder{ color: var(--text-muted) !important; opacity: 1; } #contact select:invalid{ color: var(--text-muted); }`}</style>
     </section>
   );
 }
@@ -713,9 +685,7 @@ function RentalsApp() {
         <BeachsideIntro />
         <FeaturedResidences />
         <TenantJourney />
-        <ServicesGrid />
-        <BenefitsBand />
-        <Testimonials />
+        <WhyRentAtLagoon />
         <ContactForm />
         <FAQSection />
       </main>

@@ -8,6 +8,7 @@ const { useState, useEffect } = React;
 
 /* ─── Image constants ──────────────────────────────────────────────────────── */
 const FOOTER_CTA   = `${B}/img/owners-embedded-8.jpg`;
+const PARALLAX_IMG = `${B}/img/porte-cochere.jpg`;
 const FOOTER_LOGO  = `${B}/img/owners-embedded-9.svg`;
 const NAV_LOGO_W   = `${B}/img/owners-embedded-10.svg`;
 const NAV_LOGO_D   = `${B}/img/owners-embedded-11.svg`;
@@ -314,6 +315,42 @@ const OWNER_STEPS = [
   { n: '7', title: 'Reporting',         desc: 'Monthly statements and transparent communication.' },
 ];
 
+function ParallaxBand() {
+  const secRef = React.useRef(null);
+  const imgRef = React.useRef(null);
+  React.useEffect(() => {
+    const sec = secRef.current, img = imgRef.current;
+    if (!sec || !img) return;
+    let raf = null;
+    const update = () => {
+      raf = null;
+      const rect = sec.getBoundingClientRect();
+      const sectionCenter = rect.top + rect.height / 2;
+      const delta = window.innerHeight / 2 - sectionCenter;
+      const shift = Math.max(-70, Math.min(70, delta * 0.12));
+      img.style.transform = `translate3d(0, ${shift}px, 0)`;
+    };
+    const onScroll = () => { if (raf == null) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+  return (
+    <section ref={secRef} aria-hidden="true" style={{ position: 'relative', height: 'clamp(280px, 42vw, 520px)', overflow: 'hidden', background: 'var(--lagoon-ink)' }}>
+      <div ref={imgRef} style={{
+        position: 'absolute', top: -90, bottom: -90, left: 0, right: 0,
+        backgroundImage: `url("${PARALLAX_IMG}")`, backgroundSize: 'cover', backgroundPosition: 'center',
+        willChange: 'transform',
+      }} />
+    </section>
+  );
+}
+
 function ProcessFlow({ eyebrow, title, steps, bg }) {
   return (
     <section style={{ background: bg, paddingBlock: 'clamp(4rem, 7vw, 6.5rem)' }}>
@@ -374,6 +411,7 @@ function HowWeWorkApp() {
       <main>
         <HowWeWorkHero />
         <ProcessFlow eyebrow="For Tenants" title="Renting With Us" steps={TENANT_STEPS} bg="var(--lagoon-ocean-mist)" />
+        <ParallaxBand />
         <ProcessFlow eyebrow="For Owners" title="Managing Your Property" steps={OWNER_STEPS} bg="var(--lagoon-white)" />
       </main>
       <Footer />

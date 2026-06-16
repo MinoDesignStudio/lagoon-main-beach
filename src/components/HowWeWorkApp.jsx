@@ -257,7 +257,7 @@ function Footer() {
           <span style={{ fontFamily: 'var(--font-body)', fontSize: 12.5, color: 'rgba(244,243,239,0.6)' }}>© 2026 Lagoon Main Beach. All rights reserved.</span>
           <div style={{ display: 'flex', gap: 22 }}>
             {['Privacy Policy'].map((l) => (
-              <a key={l} href="#" style={{ fontFamily: 'var(--font-body)', fontSize: 12.5, color: 'rgba(244,243,239,0.6)' }} onMouseEnter={onEnter} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(244,243,239,0.6)'}>{l}</a>
+              <a key={l} href={`${B}/privacy/`} style={{ fontFamily: 'var(--font-body)', fontSize: 12.5, color: 'rgba(244,243,239,0.6)' }} onMouseEnter={onEnter} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(244,243,239,0.6)'}>{l}</a>
             ))}
           </div>
         </Wrap>

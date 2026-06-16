@@ -481,9 +481,9 @@ function Nav() {
         {/* CTA */}
         <div className="nav-cta-desktop" style={{ display: 'flex', alignItems: 'center', justifySelf: 'end' }}>
           {onHero ? (
-            <Button as="a" href={`${B}/rentals/#contact`} variant="inverse" size="md" style={{ background: 'var(--lagoon-white)', color: 'var(--lagoon-tide)', border: '1px solid var(--lagoon-white)' }}>Book Now</Button>
+            <Button as="a" href={`${B}/contact/`} variant="inverse" size="md" style={{ background: 'var(--lagoon-white)', color: 'var(--lagoon-tide)', border: '1px solid var(--lagoon-white)' }}>Book Now</Button>
           ) : (
-            <Button as="a" href={`${B}/rentals/#contact`} variant="primary" size="md">Book Now</Button>
+            <Button as="a" href={`${B}/contact/`} variant="primary" size="md">Book Now</Button>
           )}
         </div>
 
@@ -516,7 +516,7 @@ function Nav() {
             }}>{l}</a>
           ))}
           <div style={{ marginTop: '1.25rem' }}>
-            <Button as="a" href={`${B}/rentals/#contact`} variant="primary" size="md" style={{ width: '100%', justifyContent: 'center' }}>Book Now</Button>
+            <Button as="a" href={`${B}/contact/`} variant="primary" size="md" style={{ width: '100%', justifyContent: 'center' }}>Book Now</Button>
           </div>
         </div>
       )}

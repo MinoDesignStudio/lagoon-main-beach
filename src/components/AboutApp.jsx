@@ -153,7 +153,7 @@ function Nav() {
         </nav>
 
         <div className="nav-cta-desktop" style={{ display: 'flex', alignItems: 'center', justifySelf: 'end' }}>
-          <Button as="a" href={`${B}/rentals/#contact`} variant="primary" size="md">BOOK NOW</Button>
+          <Button as="a" href={`${B}/contact/`} variant="primary" size="md">BOOK NOW</Button>
         </div>
 
         <button aria-label="Menu" style={{
@@ -181,7 +181,7 @@ function Nav() {
             }}>{l.label}</a>
           ))}
           <div style={{ marginTop: '1.25rem' }}>
-            <Button as="a" href={`${B}/rentals/#contact`} variant="primary" size="md" style={{ width: '100%', justifyContent: 'center' }}>BOOK NOW</Button>
+            <Button as="a" href={`${B}/contact/`} variant="primary" size="md" style={{ width: '100%', justifyContent: 'center' }}>BOOK NOW</Button>
           </div>
         </div>
       )}

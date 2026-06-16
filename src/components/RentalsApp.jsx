@@ -238,7 +238,7 @@ function Footer() {
             <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(244,243,239,0.75)', fontSize: 'var(--text-md)', lineHeight: 1.6, margin: 0, maxWidth: '44ch' }}>Whether you're looking to rent at Lagoon or exploring property management, we're here to help.</p>
           </div>
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-            <Button as="a" href="#" variant="inverse" size="md">View Available Rentals</Button>
+            <Button as="a" href={`${B}/how-we-work/`} variant="inverse" size="md">See How We Work</Button>
           </div>
         </div>
         <img src={FOOTER_CTA} alt="Lagoon Main Beach aerial view" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
@@ -592,15 +592,16 @@ function TenantJourney() {
 }
 
 function ContactForm() {
-  const field = { fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--lagoon-ink)', background: 'var(--lagoon-white)', border: '1px solid var(--border-hairline)', borderRadius: 0, padding: '14px 16px', outline: 'none', width: '100%', boxSizing: 'border-box', display: 'block', appearance: 'auto' };
+  const field = { fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--lagoon-ocean-mist)', background: 'transparent', border: '1px solid rgba(244,243,239,0.45)', borderRadius: 0, padding: '13px 14px', outline: 'none', width: '100%', boxSizing: 'border-box', display: 'block', appearance: 'auto' };
   const taStyle = { ...field, resize: 'vertical' };
   return (
-    <section id="contact" style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(4rem, 7vw, 7rem)' }}>
+    <section id="contact" style={{ background: 'var(--lagoon-tide)', paddingBlock: 'clamp(4rem, 7vw, 7rem)' }}>
       <Wrap>
-        <div className="reveal" style={{ maxWidth: 860, margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 4vw, 3rem)' }}>
-            <h2 style={{ fontSize: 'clamp(2rem, 3.6vw, 3rem)', color: 'var(--lagoon-tide)', margin: '0 0 0.6rem', lineHeight: 1.12 }}>Enquire or Book a Viewing</h2>
-            <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', fontSize: 'var(--text-md)', lineHeight: 1.7, margin: 0 }}>Interested in renting at Lagoon Main Beach? Fill in the form and we'll be in touch.</p>
+        <div className="reveal cf-outer" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 'clamp(3rem, 6vw, 6rem)', alignItems: 'start' }}>
+          <div>
+            <div className="lagoon-eyebrow" style={{ color: 'var(--lagoon-ocean-mist)', marginBottom: 18 }}>Get In Touch</div>
+            <h2 style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', color: 'var(--lagoon-ocean-mist)', margin: '0 0 1rem', lineHeight: 1.15 }}>Enquire or Book a Viewing</h2>
+            <p style={{ fontFamily: 'var(--font-body)', color: 'var(--lagoon-ocean-mist)', fontSize: 'var(--text-md)', lineHeight: 1.7, margin: 0 }}>Interested in renting at Lagoon Main Beach? Fill in the form and we'll be in touch.</p>
           </div>
           <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div className="cf-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
@@ -629,11 +630,11 @@ function ContactForm() {
               </select>
             </div>
             <textarea placeholder="Notes - tell us anything else about what you're looking for" rows="5" style={taStyle}></textarea>
-            <button type="submit" style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 15, color: 'var(--lagoon-ocean-mist)', background: 'var(--lagoon-ink)', border: 'none', borderRadius: 0, padding: '16px 24px', cursor: 'pointer', width: '100%', letterSpacing: '0.04em' }}>Submit Enquiry</button>
+            <button type="submit" style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 15, color: 'var(--lagoon-tide)', background: 'var(--lagoon-white)', border: 'none', borderRadius: 0, padding: '16px 24px', cursor: 'pointer', width: '100%', letterSpacing: '0.04em' }}>Submit Enquiry</button>
           </form>
         </div>
       </Wrap>
-      <style>{`@media (max-width: 560px){ .cf-row{ grid-template-columns: 1fr !important; } } #contact ::placeholder{ color: var(--text-muted) !important; opacity: 1; } #contact select:invalid{ color: var(--text-muted); }`}</style>
+      <style>{`@media (max-width: 720px){ .cf-outer{ grid-template-columns: 1fr !important; } } @media (max-width: 560px){ .cf-row{ grid-template-columns: 1fr !important; } } #contact ::placeholder{ color: rgba(244,243,239,0.6) !important; opacity: 1; } #contact select option{ color: var(--lagoon-ink); background: var(--lagoon-white); } #contact select:invalid{ color: rgba(244,243,239,0.6); }`}</style>
     </section>
   );
 }

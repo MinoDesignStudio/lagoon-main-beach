@@ -238,7 +238,7 @@ function Footer() {
             <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(244,243,239,0.75)', fontSize: 'var(--text-md)', lineHeight: 1.6, margin: 0, maxWidth: '44ch' }}>Whether you're looking to rent at Lagoon or exploring property management, we're here to help.</p>
           </div>
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-            <Button as="a" href="#" variant="inverse" size="md">View Available Rentals</Button>
+            <Button as="a" href={`${B}/how-we-work/`} variant="inverse" size="md">See How We Work</Button>
           </div>
         </div>
         <img src={FOOTER_CTA} alt="Lagoon Main Beach aerial view" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />

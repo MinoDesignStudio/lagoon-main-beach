@@ -3,7 +3,7 @@ import { Icon } from './Icon.jsx';
 
 const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-/* Lagoon Owners Page — standalone. Mino Design and Digital. */
+/* Lagoon Owners Page - standalone. Mino Design and Digital. */
 const { useState, useEffect, useRef } = React;
 
 /* ─── Image constants ──────────────────────────────────────────────────────── */
@@ -164,7 +164,7 @@ function Nav() {
         height: scrolled ? 80 : 98, display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 24,
         transition: 'height var(--dur-base) var(--ease-out)',
       }}>
-        <a href="Lagoon-Homepage-Standalone.html" aria-label="Lagoon Main Beach — home" style={{ display: 'flex', alignItems: 'center', justifySelf: 'start' }}>
+        <a href="Lagoon-Homepage-Standalone.html" aria-label="Lagoon Main Beach - home" style={{ display: 'flex', alignItems: 'center', justifySelf: 'start' }}>
           <img src={onHero ? NAV_LOGO_W : NAV_LOGO_D} alt="Lagoon Main Beach" style={{ height: scrolled ? 48 : 60, transition: 'height var(--dur-base) var(--ease-out)', filter: onHero ? 'drop-shadow(0 1px 10px rgba(20,28,32,0.35))' : 'none' }} />
         </a>
 

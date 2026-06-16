@@ -45,6 +45,10 @@ function port(srcFile, rootComponent, outFile) {
   // d) double-quoted JSX attributes: ="/img/x" -> ={`${B}/img/x`}
   s = s.replace(/="\/img\/([^"]*)"/g, '={`${B}/img/$1`}');
 
+  // 4b. House rule: no em-dashes anywhere - use a spaced hyphen instead.
+  //     (Keeps surrounding newlines intact; only collapses inline spacing.)
+  s = s.replace(/[ \t]*—[ \t]*/g, ' - ');
+
   // 5. Swap the client mount for a module export. (The file's own
   //    `const { useState, useEffect, useRef } = React;` is kept, so we import
   //    only the React default to avoid redeclaring those bindings.)

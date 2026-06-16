@@ -3,14 +3,14 @@ import { Icon } from './Icon.jsx';
 
 const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-/* Lagoon component library — generated from /components for standalone use in the UI kit. */
+/* Lagoon component library - generated from /components for standalone use in the UI kit. */
 const { useState, useEffect, useRef } = React;
 
 /* components/core/Tag.jsx */
 
 
 /**
- * Lagoon — Tag
+ * Lagoon - Tag
  * Small pill label for amenities, status and metadata.
  */
 function Tag({ children, tone = 'tide', variant = 'soft', ...rest }) {
@@ -46,7 +46,7 @@ function Tag({ children, tone = 'tide', variant = 'soft', ...rest }) {
 
 
 /**
- * Lagoon — Button
+ * Lagoon - Button
  * Primary CTA in Tide, plus outline + ghost variants.
  * Labels are UPPERCASE Montserrat Medium with wide tracking (brand signature).
  */
@@ -151,7 +151,7 @@ function Button({
 
 
 /**
- * Lagoon — Eyebrow
+ * Lagoon - Eyebrow
  * Wide-tracked uppercase Montserrat kicker that sits above display headings.
  * Optional flanking hairlines for the editorial "MAIN BEACH · GOLD COAST" look.
  */
@@ -192,8 +192,8 @@ function Eyebrow({ children, color = 'tide', rule = false, align = 'left', ...re
 
 
 /**
- * Lagoon — Input
- * Text field with a wide-tracked uppercase label. Calm, editorial styling —
+ * Lagoon - Input
+ * Text field with a wide-tracked uppercase label. Calm, editorial styling - 
  * hairline border, Tide focus. Works for text / email / tel / textarea / select.
  */
 function Input({
@@ -283,7 +283,7 @@ function Input({
 
 
 /**
- * Lagoon — ResidenceCard
+ * Lagoon - ResidenceCard
  * A listing card: arch-topped photo, amenity tags, serif title, location, price.
  */
 function ResidenceCard({
@@ -356,7 +356,7 @@ function ResidenceCard({
 
 
 /**
- * Lagoon — ServiceCard
+ * Lagoon - ServiceCard
  * Presents one of the two brand services (Rent / Let). Tide or cream surface.
  */
 function ServiceCard({
@@ -420,10 +420,10 @@ function Wave({ fill = 'var(--lagoon-ocean-mist)', flip = false, height, style }
   );
 }
 
-/* Lucide icon — re-renders the glyph after mount. */
+/* Lucide icon - re-renders the glyph after mount. */
 
 
-/* Fixed site navigation — blue logo left, links + two CTAs right. */
+/* Fixed site navigation - blue logo left, links + two CTAs right. */
 const { useState: useStateNav, useEffect: useEffectNav } = React;
 
 function Nav() {
@@ -459,7 +459,7 @@ function Nav() {
         transition: 'height var(--dur-base) var(--ease-out)',
       }}>
         {/* Logo */}
-        <a href="#top" aria-label="Lagoon Main Beach — home" style={{ display: 'flex', alignItems: 'center', justifySelf: 'start' }}>
+        <a href="#top" aria-label="Lagoon Main Beach - home" style={{ display: 'flex', alignItems: 'center', justifySelf: 'start' }}>
           <img src={onHero ? `${B}/img/home-embedded-2.svg` : `${B}/img/home-embedded-3.svg`} alt="Lagoon Main Beach" style={{ height: scrolled ? 48 : 60, transition: 'height var(--dur-base) var(--ease-out)', filter: onHero ? 'drop-shadow(0 1px 10px rgba(20,28,32,0.35))' : 'none' }} />
         </a>
 
@@ -541,7 +541,7 @@ function HeroServices() {
       }}>
 
 
-        {/* left-to-right scrim — image area only, stops at image bottom */}
+        {/* left-to-right scrim - image area only, stops at image bottom */}
         <div aria-hidden="true" style={{
           position: 'absolute', top: 0, left: 0, right: 0,
           height: 'calc(100vw * 0.367)',
@@ -589,7 +589,7 @@ function HeroServices() {
           </div>
         </Wrap>
 
-        {/* wave into cream — sits below service cards */}
+        {/* wave into cream - sits below service cards */}
 
         <Wave fill="var(--lagoon-ocean-mist)" style={{ position: 'absolute', left: 0, right: 0, bottom: -1 }} />
       </div>
@@ -739,7 +739,7 @@ function QuoteBand() {
 }
 
 
-/* Why Owners Choose Lagoon — editorial benefits grid. */
+/* Why Owners Choose Lagoon - editorial benefits grid. */
 function OwnersBenefits() {
 
 
@@ -798,7 +798,7 @@ function OwnersBenefits() {
 }
 
 
-/* Featured residences — arch-top listing cards. */
+/* Featured residences - arch-top listing cards. */
 function FeaturedResidences() {
 
 
@@ -832,7 +832,7 @@ function FeaturedResidences() {
 }
 
 
-/* Trust bar — Tide band of headline stats. */
+/* Trust bar - Tide band of headline stats. */
 function Trust() {
   const stats = [
     { value: '50+', label: 'Properties Managed' },
@@ -872,7 +872,7 @@ function Trust() {
 }
 
 
-/* Footer — Tide band with closing CTA, link columns and contact. */
+/* Footer - Tide band with closing CTA, link columns and contact. */
 function Footer() {
 
   const cream = 'var(--lagoon-ocean-mist)';
@@ -900,7 +900,7 @@ function Footer() {
             <Button as="a" href="#" variant="secondary" size="md" style={{ color: cream, borderColor: 'var(--border-on-brand)' }}>Management for Owners</Button>
           </div>
         </div>
-        {/* Aerial image — full height, edge to edge */}
+        {/* Aerial image - full height, edge to edge */}
         <img src={`${B}/img/home-embedded-14.jpg`} alt="" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       </div>
 

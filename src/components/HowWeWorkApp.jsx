@@ -280,8 +280,7 @@ function HowWeWorkHero() {
     }}>
       <Wrap style={{ position: 'relative', width: '100%', paddingBlock: 'clamp(7rem, 14vw, 11rem)', textAlign: 'center' }}>
         <div className="reveal in" style={{ margin: '0 auto', maxWidth: 720 }}>
-          <img src={FAVICON_LOGO} alt="" aria-hidden="true" style={{ height: 26, marginBottom: 16, opacity: 0.92, filter: 'brightness(0) invert(1)' }} />
-          <Eyebrow color="mist" align="center" style={{ marginBottom: 16 }}>How It Works</Eyebrow>
+          <img src={FAVICON_LOGO} alt="" aria-hidden="true" style={{ height: 26, marginBottom: 20, opacity: 0.92, filter: 'brightness(0) invert(1)' }} />
           <h1 style={{ color: 'var(--lagoon-ocean-mist)', margin: '0 0 0.4em', fontSize: 'clamp(2rem, 4vw, 3.2rem)', lineHeight: 1.08 }}>
             How We Work
           </h1>
@@ -325,8 +324,13 @@ function ProcessFlow({ eyebrow, title, steps, bg }) {
         </div>
         <div className="reveal process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'clamp(28px, 3vw, 44px) clamp(24px, 3vw, 40px)' }}>
           {steps.map((s) => (
-            <div key={s.n} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+            <div key={s.n} className="step-item" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <span className="step-line" aria-hidden="true" style={{
+                position: 'absolute', top: 37, left: '50%', width: 'calc(100% + clamp(24px, 3vw, 40px))',
+                height: 2, background: 'rgba(66,115,128,0.28)', zIndex: 0,
+              }} />
               <div style={{
+                position: 'relative', zIndex: 1,
                 width: 74, height: 74, borderRadius: '50%',
                 background: 'var(--lagoon-tide)', color: 'var(--lagoon-ocean-mist)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -339,7 +343,18 @@ function ProcessFlow({ eyebrow, title, steps, bg }) {
           ))}
         </div>
       </Wrap>
-      <style>{`@media(max-width:760px){.process-grid{grid-template-columns:1fr 1fr !important;}}@media(max-width:430px){.process-grid{grid-template-columns:1fr !important;}}`}</style>
+      <style>{`
+        .process-grid .step-item:nth-child(4n) .step-line, .process-grid .step-item:last-child .step-line { display: none; }
+        @media(max-width:760px){
+          .process-grid{ grid-template-columns:1fr 1fr !important; }
+          .process-grid .step-item:nth-child(4n) .step-line { display: block; }
+          .process-grid .step-item:nth-child(2n) .step-line, .process-grid .step-item:last-child .step-line { display: none; }
+        }
+        @media(max-width:430px){
+          .process-grid{ grid-template-columns:1fr !important; }
+          .process-grid .step-item .step-line { display: none !important; }
+        }
+      `}</style>
     </section>
   );
 }

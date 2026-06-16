@@ -536,12 +536,13 @@ function HeroServices() {
         .home-hero-banner{ display:none; }
         @media (max-width: 760px){
           .home-hero{ display:block !important; background-image:none !important; background-color: var(--lagoon-ocean-mist) !important; }
-          .home-hero-banner{ display:block !important; width:100%; height: clamp(240px, 62vw, 320px); background-image:url("${B}/img/home-embedded-4.jpg"); background-size:cover; background-position:center; }
-          .home-hero-scrim{ height: clamp(240px, 62vw, 320px) !important; }
-          .home-hero-wrap{ padding-top: 32px !important; padding-bottom: 60px !important; }
+          .home-hero-banner{ display:block !important; width:100%; height: clamp(180px, 48vw, 240px); background-image:url("${B}/img/home-embedded-4.jpg"); background-size:cover; background-position:78% center; }
+          .home-hero-scrim{ height: clamp(180px, 48vw, 240px) !important; }
+          .home-hero-wrap{ padding-top: 30px !important; padding-bottom: 56px !important; }
           .home-hero-copy{ padding-top: 0 !important; }
           .home-hero-copy h1{ color: var(--lagoon-tide) !important; }
-          .home-hero-copy p{ color: var(--text-muted) !important; opacity: 1 !important; }
+          .home-hero-copy p{ color: var(--text-muted) !important; opacity: 1 !important; margin-bottom: 18px !important; }
+          .home-hero-cards{ margin-top: 10px !important; }
         }
       `}</style>
       <div className="home-hero" style={{
@@ -583,7 +584,7 @@ function HeroServices() {
             </p>
 
           </div>
-          <div className="reveal" style={{
+          <div className="reveal home-hero-cards" style={{
             display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(20px, 2.4vw, 32px)',
             position: 'relative', zIndex: 5, marginTop: 50,
           }}>
@@ -667,8 +668,9 @@ function Owners() {
                 position: 'relative', overflow: 'hidden', height: 'clamp(340px, 33vw, 470px)',
                 boxShadow: 'var(--shadow-lg)', background: 'var(--lagoon-swell)',
               }}>
+                <style>{`@media (max-width: 760px){ .home-gal-slide-0{ background-position: 88% center !important; } }`}</style>
                 {reasons.map((r, i) => (
-                  <div key={r.title} aria-hidden={i !== active} style={{
+                  <div key={r.title} aria-hidden={i !== active} className={`home-gal-slide-${i}`} style={{
                     position: 'absolute', inset: 0,
                     backgroundImage: `url("${r.image}")`, backgroundSize: 'cover', backgroundPosition: r.pos || 'center',
                     opacity: i === active ? 1 : 0,

@@ -532,10 +532,18 @@ function HeroServices() {
   return (
     <section id="top" style={{ position: 'relative' }}>
       {/* ---------- HERO ---------- */}
-      <style>{`@media (max-width: 760px){
-        .home-hero{ background-size: cover !important; background-position: center top !important; }
-        .home-hero-scrim{ height: 100% !important; background: linear-gradient(180deg, rgba(20,30,38,0.62) 0%, rgba(20,30,38,0.40) 38%, rgba(20,30,38,0.30) 100%) !important; }
-      }`}</style>
+      <style>{`
+        .home-hero-banner{ display:none; }
+        @media (max-width: 760px){
+          .home-hero{ display:block !important; background-image:none !important; background-color: var(--lagoon-ocean-mist) !important; }
+          .home-hero-banner{ display:block !important; width:100%; height: clamp(240px, 62vw, 320px); background-image:url("${B}/img/home-embedded-4.jpg"); background-size:cover; background-position:center; }
+          .home-hero-scrim{ height: clamp(240px, 62vw, 320px) !important; }
+          .home-hero-wrap{ padding-top: 32px !important; padding-bottom: 60px !important; }
+          .home-hero-copy{ padding-top: 0 !important; }
+          .home-hero-copy h1{ color: var(--lagoon-tide) !important; }
+          .home-hero-copy p{ color: var(--text-muted) !important; opacity: 1 !important; }
+        }
+      `}</style>
       <div className="home-hero" style={{
         position: 'relative',
         display: 'flex', alignItems: 'stretch',
@@ -546,6 +554,8 @@ function HeroServices() {
         backgroundRepeat: 'no-repeat',
       }}>
 
+        {/* mobile-only banner image - full render on top, text reads on cream below */}
+        <div className="home-hero-banner" aria-hidden="true" />
 
         {/* left-to-right scrim - image area only, stops at image bottom */}
         <div aria-hidden="true" className="home-hero-scrim" style={{
@@ -554,8 +564,8 @@ function HeroServices() {
           background: 'linear-gradient(to right, rgba(20,30,38,0.60) 0%, rgba(20,30,38,0.35) 45%, rgba(20,30,38,0) 72%)',
         }} />
 
-        <Wrap style={{ position: 'relative', width: '100%', paddingTop: 96, paddingBottom: 100, display: 'flex', flexDirection: 'column' }}>
-          <div className="reveal in" style={{ maxWidth: 940, textAlign: 'left', paddingTop: 'clamp(32px, 8vw, 120px)' }}>
+        <Wrap className="home-hero-wrap" style={{ position: 'relative', width: '100%', paddingTop: 96, paddingBottom: 100, display: 'flex', flexDirection: 'column' }}>
+          <div className="reveal in home-hero-copy" style={{ maxWidth: 940, textAlign: 'left', paddingTop: 'clamp(32px, 8vw, 120px)' }}>
             <h1 style={{
               color: 'var(--lagoon-ocean-mist)', margin: 0, letterSpacing: '0.02em',
               lineHeight: 1.04,

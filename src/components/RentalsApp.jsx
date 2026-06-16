@@ -310,7 +310,7 @@ function Footer() {
 
 /* ─── Page Sections ────────────────────────────────────────────────────────── */
 
-function OwnersHero() {
+function RentalsHero() {
   return (
     <section id="top" style={{
       position: 'relative', minHeight: '50vh',
@@ -326,12 +326,12 @@ function OwnersHero() {
       <Wrap style={{ position: 'relative', width: '100%', paddingBlock: 'clamp(7rem, 14vw, 11rem)', textAlign: 'center' }}>
         <div className="reveal in" style={{ margin: '0 auto', maxWidth: 680 }}>
           <img src={FAVICON_LOGO} alt="" aria-hidden="true" style={{ height: 26, marginBottom: 16, opacity: 0.92, filter: 'brightness(0) invert(1)' }} />
-          <Eyebrow color="mist" style={{ marginBottom: 16 }}>For Owners</Eyebrow>
+          <Eyebrow color="mist" style={{ marginBottom: 16 }}>For Tenants</Eyebrow>
           <h1 style={{ color: 'var(--lagoon-ocean-mist)', margin: '0 0 0.4em', fontSize: 'clamp(2rem, 4vw, 3.2rem)', lineHeight: 1.08 }}>
-            Your Property, Expertly Managed
+            Your Next Home, By The Beach
           </h1>
           <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(244,243,239,0.88)', fontSize: 'var(--text-lg)', lineHeight: 1.55, maxWidth: '46ch', margin: '0 auto 1.8em' }}>
-            Maximise your investment with expert property management at Main Beach, Gold Coast.
+            Quality long-term rental apartments at Lagoon Main Beach, Gold Coast.
           </p>
         </div>
       </Wrap>
@@ -340,33 +340,104 @@ function OwnersHero() {
   );
 }
 
-function ProactiveIntro() {
+function BeachsideIntro() {
   return (
     <section style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(4rem, 7vw, 6rem)' }}>
       <Wrap>
         <div className="reveal" style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
-          <Eyebrow color="coral" align="center" rule style={{ marginBottom: 24 }}>Proactive Care. Premium Results.</Eyebrow>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)', lineHeight: 1.8, color: 'var(--text-muted)', fontWeight: 300, margin: '0 0 2rem' }}>
-            At Lagoon, we don't just manage properties - we protect your asset, attract quality tenants, and keep you informed every step of the way. Our hands-on approach means fewer surprises and better returns.
+          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: '0 0 0.5em' }}>Live the Beachside Life</h2>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)', lineHeight: 1.8, color: 'var(--text-muted)', fontWeight: 300, margin: 0 }}>
+            Lagoon Main Beach offers premium residential living just steps from the sand. Every apartment is thoughtfully maintained, with resort-style amenities and a genuine sense of community. This is long-term coastal living at its finest.
           </p>
-          <Button as="a" href="#contact" variant="primary" size="md">REQUEST A PROPOSAL</Button>
         </div>
       </Wrap>
     </section>
   );
 }
 
-function ImageGallery() {
+/**
+ * Lagoon - ResidenceCard
+ * A listing card: arch-topped photo, amenity tags, serif title, location, price.
+ */
+function ResidenceCard({ image, title = 'Residence', location = null, price, period = 'week', tags = [], status, onView }) {
   return (
-    <section style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(3rem, 5vw, 5rem)' }}>
+    <div style={{
+      display: 'flex', flexDirection: 'column',
+      background: 'var(--lagoon-white)',
+      borderRadius: 'var(--radius-lg)',
+      boxShadow: 'var(--shadow-md)',
+      overflow: 'hidden',
+      width: '100%',
+    }}>
+      <div style={{ padding: '16px 16px 0' }}>
+        <div style={{
+          position: 'relative',
+          height: 250,
+          borderRadius: 'var(--radius-arch)',
+          overflow: 'hidden',
+          background: image
+            ? `center/cover no-repeat url("${image}")`
+            : 'linear-gradient(170deg, var(--lagoon-swell), var(--lagoon-tide))',
+        }}>
+          {status && (
+            <div style={{ position: 'absolute', top: 14, left: 14 }}>
+              <Tag tone="tide" variant="solid">{status}</Tag>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div style={{ padding: '20px 22px 24px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+          {location && <span style={{ fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{location}</span>}
+          <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 25, lineHeight: 1.12, letterSpacing: 'var(--ls-feature)', textTransform: 'uppercase', margin: 0, color: 'var(--text-body)', whiteSpace: 'pre-line' }}>{title}</h3>
+        </div>
+
+        {tags.length > 0 && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {tags.map((t) => <Tag key={t} tone="swell">{t}</Tag>)}
+          </div>
+        )}
+
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
+          {price != null && (
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
+              <span style={{ fontFamily: 'var(--font-body)', fontSize: 22, color: 'var(--lagoon-tide)', fontWeight: 600, letterSpacing: '0.01em' }}>{price}</span>
+              <span style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--text-muted)' }}>/ {period}</span>
+            </div>
+          )}
+          <Button variant="secondary" size="sm" onClick={onView}>View</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* Featured residences - arch-top listing cards (shared with the homepage). */
+function FeaturedResidences() {
+  const items = [
+    { image: `${B}/img/home-embedded-11.jpg`, title: '1 Bedroom\nOcean View', price: '$520', period: 'week', tags: ['1 Bed', '1 Bath', '1 Parking'] },
+    { image: `${B}/img/home-embedded-12.jpg`, title: '2 Bedroom Coastal Retreat', price: '$720', period: 'week', tags: ['2 Bed', '2 Bath', '1 Parking'] },
+    { image: `${B}/img/home-embedded-13.jpg`, title: '3 Bedroom Premium Residence', price: '$950', period: 'week', tags: ['3 Bed', '2 Bath', '2 Parking'] },
+  ];
+
+  return (
+    <section style={{ background: 'var(--lagoon-white)', paddingBlock: 'clamp(3.5rem, 7vw, 7rem)' }}>
       <Wrap>
-        <div className="reveal gallery-grid" style={{ display: 'grid', gridTemplateColumns: '0.7fr 1fr 0.7fr', gap: 'clamp(14px, 2vw, 28px)', alignItems: 'end' }}>
-          <div style={{ height: 'clamp(170px, 20vw, 260px)', backgroundImage: `url("${ARCH_IMG}")`, backgroundSize: 'cover', backgroundPosition: 'left top' }} />
-          <div style={{ height: 'clamp(240px, 28vw, 350px)', backgroundImage: `url("${CABANA_POOL}")`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: 'var(--radius-arch)' }} />
-          <div style={{ height: 'clamp(170px, 20vw, 260px)', backgroundImage: `url("${GALLERY_RIGHT}")`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap', marginBottom: 'clamp(2rem, 4vw, 3.4rem)' }}>
+          <div className="reveal">
+            <div className="lagoon-eyebrow" style={{ color: 'var(--text-coral)', marginBottom: 16 }}>Now Leasing</div>
+            <h2 style={{ fontSize: 'clamp(2rem, 3.8vw, 3.1rem)', margin: '0 0 1.2rem', color: 'var(--lagoon-tide)' }}>Featured residences</h2>
+            <Button as="a" href="#" variant="primary" size="md">View Available Rentals</Button>
+          </div>
+        </div>
+
+        <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))', gap: 'clamp(20px, 2.4vw, 32px)' }}>
+          {items.map((it) => (
+            <ResidenceCard key={it.title} {...it} onView={() => {}} />
+          ))}
         </div>
       </Wrap>
-      <style>{`@media(max-width:680px){.gallery-grid{grid-template-columns:1fr 1fr !important;} .gallery-grid>div:first-child{display:none !important;}}`}</style>
     </section>
   );
 }
@@ -603,9 +674,9 @@ function RentalsApp() {
     <React.Fragment>
       <Nav />
       <main>
-        <OwnersHero />
-        <ProactiveIntro />
-        <ImageGallery />
+        <RentalsHero />
+        <BeachsideIntro />
+        <FeaturedResidences />
         <ServicesGrid />
         <BenefitsBand />
         <Testimonials />

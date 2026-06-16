@@ -295,6 +295,7 @@ function ResidenceCard({
   tags = [],
   status,          // e.g. 'Available now'
   onView,
+  href,
 }) {
   return (
     <div style={{
@@ -342,7 +343,7 @@ function ResidenceCard({
               <span style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--text-muted)' }}>/ {period}</span>
             </div>
           )}
-          <Button variant="secondary" size="sm" onClick={onView}>View</Button>
+          <Button as={href ? 'a' : 'button'} href={href} variant="secondary" size="sm" onClick={onView}>View</Button>
         </div>
       </div>
     </div>
@@ -365,6 +366,7 @@ function ServiceCard({
   body,
   cta = 'Discover more',
   onCta,
+  href,
   tone = 'light',   // 'light' (cream) | 'brand' (tide) | 'ink'
   titleColor,
 }) {
@@ -389,7 +391,7 @@ function ServiceCard({
       <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 31, lineHeight: 1.05, letterSpacing: 'var(--ls-feature)', textTransform: 'uppercase', margin: 0, color: titleColor || t.fg, whiteSpace: 'nowrap' }}>{title}</h3>
       <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.65, margin: 0, color: t.fg, opacity: tone === 'light' ? 0.78 : 0.85 }}>{body}</p>
       <div style={{ marginTop: 'auto', paddingTop: 8 }}>
-        <Button variant={t.btn} size="sm" onClick={onCta}>{cta}</Button>
+        <Button as={href ? 'a' : 'button'} href={href} variant={t.btn} size="sm" onClick={onCta}>{cta}</Button>
       </div>
     </div>
   );
@@ -479,9 +481,9 @@ function Nav() {
         {/* CTA */}
         <div className="nav-cta-desktop" style={{ display: 'flex', alignItems: 'center', justifySelf: 'end' }}>
           {onHero ? (
-            <Button as="a" href="#" variant="inverse" size="md" style={{ background: 'var(--lagoon-white)', color: 'var(--lagoon-tide)', border: '1px solid var(--lagoon-white)' }}>Book Now</Button>
+            <Button as="a" href={`${B}/rentals/#contact`} variant="inverse" size="md" style={{ background: 'var(--lagoon-white)', color: 'var(--lagoon-tide)', border: '1px solid var(--lagoon-white)' }}>Book Now</Button>
           ) : (
-            <Button as="a" href="#" variant="primary" size="md">Book Now</Button>
+            <Button as="a" href={`${B}/rentals/#contact`} variant="primary" size="md">Book Now</Button>
           )}
         </div>
 
@@ -514,7 +516,7 @@ function Nav() {
             }}>{l}</a>
           ))}
           <div style={{ marginTop: '1.25rem' }}>
-            <Button as="a" href="#" variant="primary" size="md" style={{ width: '100%', justifyContent: 'center' }}>Book Now</Button>
+            <Button as="a" href={`${B}/rentals/#contact`} variant="primary" size="md" style={{ width: '100%', justifyContent: 'center' }}>Book Now</Button>
           </div>
         </div>
       )}
@@ -577,6 +579,7 @@ function HeroServices() {
               title="Rent at Lagoon"
               body="Discover premium beachside apartments at Main Beach. Quality long-term living with ocean breezes and resort-style amenities."
               cta="View Available Rentals"
+              href={`${B}/rentals/`}
             />
             <ServiceCard
               tone="light"
@@ -585,6 +588,7 @@ function HeroServices() {
               titleColor="var(--lagoon-tide)"
               body="Maximise your investment with expert property management. Proactive care, premium tenants, transparent reporting."
               cta="Management for Owners"
+              href={`${B}/owners/`}
             />
           </div>
         </Wrap>
@@ -638,8 +642,8 @@ function Owners() {
                 Wake to the sound of the surf and wander barefoot to the sand, then spend your afternoons among the cafes, restaurants and boutiques of Tedder Avenue. This is Main Beach at its best, the Gold Coast's most relaxed and sought-after address, where the ocean, the Broadwater and a genuine sense of community all meet on your doorstep.
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 12, maxWidth: 300, marginTop: 'clamp(1.6rem, 3vw, 2.4rem)' }} className="owners-cta">
-                <Button as="a" href="#" variant="primary" size="md" fullWidth style={{ whiteSpace: 'nowrap' }}>Management for Owners</Button>
-                <Button as="a" href="#" variant="secondary" size="md" fullWidth style={{ whiteSpace: 'nowrap' }}>View Available Rentals</Button>
+                <Button as="a" href={`${B}/owners/`} variant="primary" size="md" fullWidth style={{ whiteSpace: 'nowrap' }}>Management for Owners</Button>
+                <Button as="a" href={`${B}/rentals/`} variant="secondary" size="md" fullWidth style={{ whiteSpace: 'nowrap' }}>View Available Rentals</Button>
               </div>
             </div>
 
@@ -779,7 +783,7 @@ function OwnersBenefits() {
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '42ch', margin: '0 0 2rem', fontWeight: 300 }}>
               Expert property management that protects your asset and maximises your return.
             </p>
-            <Button as="a" href="#" variant="primary" size="md">Management for Owners</Button>
+            <Button as="a" href={`${B}/owners/`} variant="primary" size="md">Management for Owners</Button>
           </div>
           <div className="reveal ob-items" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'clamp(1rem, 1.75vw, 1.5rem) clamp(2rem, 4vw, 3.5rem)' }}>
             {items.map(item => (
@@ -815,14 +819,14 @@ function FeaturedResidences() {
           <div className="reveal">
             <div className="lagoon-eyebrow" style={{ color: 'var(--text-coral)', marginBottom: 16 }}>Now Leasing</div>
             <h2 style={{ fontSize: 'clamp(2rem, 3.8vw, 3.1rem)', margin: '0 0 1.2rem', color: 'var(--lagoon-tide)' }}>Featured residences</h2>
-            <Button as="a" href="#" variant="primary" size="md">View Available Rentals</Button>
+            <Button as="a" href={`${B}/rentals/`} variant="primary" size="md">View Available Rentals</Button>
           </div>
 
         </div>
 
         <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))', gap: 'clamp(20px, 2.4vw, 32px)' }}>
           {items.map((it) => (
-            <ResidenceCard key={it.title} {...it} onView={() => {}} />
+            <ResidenceCard key={it.title} {...it} href={`${B}/rentals/`} />
           ))}
         </div>
 
@@ -880,6 +884,7 @@ function Footer() {
   const cols = [
     { h: 'Explore', links: ['Rentals', 'Owners', 'How We Work', 'About', 'Contact'] },
   ];
+  const pageHrefs = { 'Rentals': `${B}/rentals/`, 'Owners': `${B}/owners/`, 'How We Work': `${B}/how-we-work/`, 'About': `${B}/about/`, 'Contact': `${B}/contact/` };
 
   const linkStyle = { fontFamily: 'var(--font-body)', fontSize: 14, color: 'rgba(244,243,239,0.78)', display: 'block', padding: '7px 0', transition: 'color var(--dur-fast) var(--ease-out)' };
   const onEnter = (e) => { e.currentTarget.style.color = cream; };
@@ -919,7 +924,7 @@ function Footer() {
             <nav key={c.h}>
               <h4 style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: cream, margin: '0 0 12px', opacity: 0.9 }}>{c.h}</h4>
               {c.links.map((l) => (
-                <a key={l} href="#" style={linkStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>{l}</a>
+                <a key={l} href={pageHrefs[l] || '#'} style={linkStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>{l}</a>
               ))}
             </nav>
           ))}

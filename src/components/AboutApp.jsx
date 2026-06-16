@@ -8,6 +8,7 @@ const { useState, useEffect } = React;
 
 /* ─── Image constants ──────────────────────────────────────────────────────── */
 const FOOTER_CTA   = `${B}/img/owners-embedded-8.jpg`;
+const PARALLAX_IMG = `${B}/img/view-looking-up.jpg`;
 const FOOTER_LOGO  = `${B}/img/owners-embedded-9.svg`;
 const NAV_LOGO_W   = `${B}/img/owners-embedded-10.svg`;
 const NAV_LOGO_D   = `${B}/img/owners-embedded-11.svg`;
@@ -192,6 +193,7 @@ function Nav() {
 function Footer() {
   const cream = 'var(--lagoon-ocean-mist)';
   const cols = [{ h: 'Explore', links: ['Rentals', 'Owners', 'How We Work', 'About', 'Contact'] }];
+  const pageHrefs = { 'Rentals': `${B}/rentals/`, 'Owners': `${B}/owners/`, 'How We Work': `${B}/how-we-work/`, 'About': `${B}/about/`, 'Contact': `${B}/contact/` };
   const linkStyle = { fontFamily: 'var(--font-body)', fontSize: 14, color: 'rgba(244,243,239,0.78)', display: 'block', padding: '7px 0', transition: 'color var(--dur-fast) var(--ease-out)' };
   const onEnter = (e) => { e.currentTarget.style.color = cream; };
   const onLeave = (e) => { e.currentTarget.style.color = 'rgba(244,243,239,0.78)'; };
@@ -224,7 +226,7 @@ function Footer() {
             <nav key={c.h}>
               <h4 style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: cream, margin: '0 0 12px', opacity: 0.9 }}>{c.h}</h4>
               {c.links.map((l) => (
-                <a key={l} href="#" style={linkStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>{l}</a>
+                <a key={l} href={pageHrefs[l] || '#'} style={linkStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>{l}</a>
               ))}
             </nav>
           ))}
@@ -315,6 +317,42 @@ function OurStory() {
           </p>
         </div>
       </Wrap>
+    </section>
+  );
+}
+
+function ParallaxBand() {
+  const secRef = React.useRef(null);
+  const imgRef = React.useRef(null);
+  React.useEffect(() => {
+    const sec = secRef.current, img = imgRef.current;
+    if (!sec || !img) return;
+    let raf = null;
+    const update = () => {
+      raf = null;
+      const rect = sec.getBoundingClientRect();
+      const sectionCenter = rect.top + rect.height / 2;
+      const delta = window.innerHeight / 2 - sectionCenter;
+      const shift = Math.max(-70, Math.min(70, delta * 0.12));
+      img.style.transform = `translate3d(0, ${shift}px, 0)`;
+    };
+    const onScroll = () => { if (raf == null) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+  return (
+    <section ref={secRef} aria-hidden="true" style={{ position: 'relative', height: 'clamp(280px, 42vw, 520px)', overflow: 'hidden', background: 'var(--lagoon-ink)' }}>
+      <div ref={imgRef} style={{
+        position: 'absolute', top: -90, bottom: -90, left: 0, right: 0,
+        backgroundImage: `url("${PARALLAX_IMG}")`, backgroundSize: 'cover', backgroundPosition: 'center',
+        willChange: 'transform',
+      }} />
     </section>
   );
 }
@@ -417,6 +455,7 @@ function AboutApp() {
       <main>
         <AboutHero />
         <OurStory />
+        <ParallaxBand />
         <WhoManages />
         <OurValues />
       </main>

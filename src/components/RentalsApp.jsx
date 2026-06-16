@@ -225,6 +225,7 @@ function Nav() {
 function Footer() {
   const cream = 'var(--lagoon-ocean-mist)';
   const cols = [{ h: 'Explore', links: ['Rentals', 'Owners', 'How We Work', 'About', 'Contact'] }];
+  const pageHrefs = { 'Rentals': `${B}/rentals/`, 'Owners': `${B}/owners/`, 'How We Work': `${B}/how-we-work/`, 'About': `${B}/about/`, 'Contact': `${B}/contact/` };
   const linkStyle = { fontFamily: 'var(--font-body)', fontSize: 14, color: 'rgba(244,243,239,0.78)', display: 'block', padding: '7px 0', transition: 'color var(--dur-fast) var(--ease-out)' };
   const onEnter = (e) => { e.currentTarget.style.color = cream; };
   const onLeave = (e) => { e.currentTarget.style.color = 'rgba(244,243,239,0.78)'; };
@@ -257,7 +258,7 @@ function Footer() {
             <nav key={c.h}>
               <h4 style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: cream, margin: '0 0 12px', opacity: 0.9 }}>{c.h}</h4>
               {c.links.map((l) => (
-                <a key={l} href="#" style={linkStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>{l}</a>
+                <a key={l} href={pageHrefs[l] || '#'} style={linkStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>{l}</a>
               ))}
             </nav>
           ))}
@@ -359,7 +360,7 @@ function BeachsideIntro() {
  * Lagoon - ResidenceCard
  * A listing card: arch-topped photo, amenity tags, serif title, location, price.
  */
-function ResidenceCard({ image, title = 'Residence', location = null, price, period = 'week', tags = [], status, onView }) {
+function ResidenceCard({ image, title = 'Residence', location = null, price, period = 'week', tags = [], status, onView, href }) {
   return (
     <div style={{
       display: 'flex', flexDirection: 'column',
@@ -406,7 +407,7 @@ function ResidenceCard({ image, title = 'Residence', location = null, price, per
               <span style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--text-muted)' }}>/ {period}</span>
             </div>
           )}
-          <Button variant="secondary" size="sm" onClick={onView}>View</Button>
+          <Button as={href ? 'a' : 'button'} href={href} variant="secondary" size="sm" onClick={onView}>View</Button>
         </div>
       </div>
     </div>
@@ -428,13 +429,13 @@ function FeaturedResidences() {
           <div className="reveal">
             <div className="lagoon-eyebrow" style={{ color: 'var(--text-coral)', marginBottom: 16 }}>Now Leasing</div>
             <h2 style={{ fontSize: 'clamp(2rem, 3.8vw, 3.1rem)', margin: '0 0 1.2rem', color: 'var(--lagoon-tide)' }}>Featured residences</h2>
-            <Button as="a" href="#" variant="primary" size="md">View Available Rentals</Button>
+            <Button as="a" href="#contact" variant="primary" size="md">Enquire or Book a Viewing</Button>
           </div>
         </div>
 
         <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))', gap: 'clamp(20px, 2.4vw, 32px)' }}>
           {items.map((it) => (
-            <ResidenceCard key={it.title} {...it} onView={() => {}} />
+            <ResidenceCard key={it.title} {...it} href="#contact" />
           ))}
         </div>
       </Wrap>

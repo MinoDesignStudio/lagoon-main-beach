@@ -201,6 +201,7 @@ function Footer() {
           </div>
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
             <Button as="a" href={`${B}/rentals/`} variant="inverse" size="md">View Available Rentals</Button>
+            <Button as="a" href={`${B}/owners/`} variant="secondary" size="md" style={{ color: cream, borderColor: 'var(--border-on-brand)' }}>Management for Owners</Button>
           </div>
         </div>
         <img src={FOOTER_CTA} alt="Lagoon Main Beach aerial view" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />

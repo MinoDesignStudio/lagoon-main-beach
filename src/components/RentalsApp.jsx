@@ -247,7 +247,7 @@ function Footer() {
       <Wrap style={{ paddingBlock: 'clamp(3rem, 5vw, 4.5rem)' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 1fr 1fr 1.2fr', gap: 'clamp(1.5rem, 3vw, 2.5rem)', alignItems: 'start' }} className="foot-grid">
           <div>
-            <img src={FOOTER_LOGO} alt="Lagoon Main Beach" style={{ height: 48, width: 'auto', marginBottom: 20, opacity: 0.9 }} />
+            <img src={FOOTER_LOGO} alt="Lagoon Main Beach" style={{ height: 92, marginBottom: 22, display: 'block' }} />
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.7, color: 'rgba(244,243,239,0.72)', maxWidth: '34ch', margin: 0 }}>
               Premium long-term rentals and expert property management at Lagoon Main Beach.
             </p>

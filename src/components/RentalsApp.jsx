@@ -7,7 +7,7 @@ const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 const { useState, useEffect, useRef } = React;
 
 /* ─── Image constants ──────────────────────────────────────────────────────── */
-const HERO_BG       = `${B}/img/owners-embedded-2.jpg`;
+const HERO_BG       = `${B}/img/rentals-hero.jpg`;
 const ARCH_IMG      = `${B}/img/owners-embedded-3.jpg`;
 const CABANA_POOL   = `${B}/img/owners-embedded-4.jpg`;
 const GALLERY_LEFT  = `${B}/img/owners-embedded-5.jpg`;

@@ -444,10 +444,10 @@ function FeaturedResidences() {
 /* "Why Rent at Lagoon" lifestyle gallery slider (shared layout with the homepage). */
 function WhyRentAtLagoon() {
   const reasons = [
-    { title: 'Prime Location', desc: 'Steps from the beach and Tedder Avenue.', image: `${B}/img/home-embedded-5.jpg` },
-    { title: 'Quality Building', desc: 'Well-maintained, with modern finishes throughout.', image: `${B}/img/home-embedded-6.jpg` },
-    { title: 'Resort Amenities', desc: 'Pool, gym, and beautifully landscaped grounds.', image: `${B}/img/home-embedded-7.jpg` },
-    { title: 'Community', desc: 'Friendly, established long-term residents.', image: `${B}/img/home-embedded-8.jpg`, pos: 'center 72%' },
+    { title: 'Prime Location', desc: 'Steps from the beach and Tedder Avenue.', image: `${B}/img/hero-pano.jpg` },
+    { title: 'Quality Building', desc: 'Well-maintained, with modern finishes throughout.', image: `${B}/img/3-print-11-cronin-ave.jpg` },
+    { title: 'Resort Amenities', desc: 'Pool, gym, and beautifully landscaped grounds.', image: `${B}/img/cabana-pool.jpg` },
+    { title: 'Community', desc: 'Friendly, established long-term residents.', image: `${B}/img/Lagoon-Colour-Final-Web-Res-2.jpg`, pos: 'center 88%' },
   ];
 
   const [active, setActive] = React.useState(0);

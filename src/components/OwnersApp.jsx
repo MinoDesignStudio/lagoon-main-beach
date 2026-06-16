@@ -1,21 +1,23 @@
 import React from 'react';
 import { Icon } from './Icon.jsx';
 
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 /* Lagoon Owners Page — standalone. Mino Design and Digital. */
 const { useState, useEffect, useRef } = React;
 
 /* ─── Image constants ──────────────────────────────────────────────────────── */
-const HERO_BG       = `/img/owners-embedded-2.jpg`;
-const ARCH_IMG      = `/img/owners-embedded-3.jpg`;
-const CABANA_POOL   = `/img/owners-embedded-4.jpg`;
-const GALLERY_LEFT  = `/img/owners-embedded-5.jpg`;
-const GALLERY_CTR   = `/img/owners-embedded-6.jpg`;
-const GALLERY_RIGHT = `/img/owners-embedded-7.jpg`;
-const FOOTER_CTA    = `/img/owners-embedded-8.jpg`;
-const FOOTER_LOGO   = `/img/owners-embedded-9.svg`;
-const NAV_LOGO_W    = `/img/owners-embedded-10.svg`;
-const NAV_LOGO_D    = `/img/owners-embedded-11.svg`;
-const FAVICON_LOGO  = `/img/owners-embedded-12.png`;
+const HERO_BG       = `${B}/img/owners-embedded-2.jpg`;
+const ARCH_IMG      = `${B}/img/owners-embedded-3.jpg`;
+const CABANA_POOL   = `${B}/img/owners-embedded-4.jpg`;
+const GALLERY_LEFT  = `${B}/img/owners-embedded-5.jpg`;
+const GALLERY_CTR   = `${B}/img/owners-embedded-6.jpg`;
+const GALLERY_RIGHT = `${B}/img/owners-embedded-7.jpg`;
+const FOOTER_CTA    = `${B}/img/owners-embedded-8.jpg`;
+const FOOTER_LOGO   = `${B}/img/owners-embedded-9.svg`;
+const NAV_LOGO_W    = `${B}/img/owners-embedded-10.svg`;
+const NAV_LOGO_D    = `${B}/img/owners-embedded-11.svg`;
+const FAVICON_LOGO  = `${B}/img/owners-embedded-12.png`;
 
 /* ─── Shared components ────────────────────────────────────────────────────── */
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Icon } from './Icon.jsx';
 
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 /* Lagoon component library — generated from /components for standalone use in the UI kit. */
 const { useState, useEffect, useRef } = React;
 
@@ -458,7 +460,7 @@ function Nav() {
       }}>
         {/* Logo */}
         <a href="#top" aria-label="Lagoon Main Beach — home" style={{ display: 'flex', alignItems: 'center', justifySelf: 'start' }}>
-          <img src={onHero ? '/img/home-embedded-2.svg' : '/img/home-embedded-3.svg'} alt="Lagoon Main Beach" style={{ height: scrolled ? 48 : 60, transition: 'height var(--dur-base) var(--ease-out)', filter: onHero ? 'drop-shadow(0 1px 10px rgba(20,28,32,0.35))' : 'none' }} />
+          <img src={onHero ? `${B}/img/home-embedded-2.svg` : `${B}/img/home-embedded-3.svg`} alt="Lagoon Main Beach" style={{ height: scrolled ? 48 : 60, transition: 'height var(--dur-base) var(--ease-out)', filter: onHero ? 'drop-shadow(0 1px 10px rgba(20,28,32,0.35))' : 'none' }} />
         </a>
 
         {/* Links (page-centred) */}
@@ -531,7 +533,7 @@ function HeroServices() {
       <div style={{
         position: 'relative',
         display: 'flex', alignItems: 'stretch',
-        backgroundImage: 'url("/img/home-embedded-4.jpg")',
+        backgroundImage: `url("${B}/img/home-embedded-4.jpg")`,
         backgroundColor: 'var(--lagoon-ocean-mist)',
         backgroundSize: '100% auto',
         backgroundPosition: 'top left',
@@ -600,10 +602,10 @@ function HeroServices() {
 function Owners() {
 
   const reasons = [
-    { icon: 'map-pin', title: 'Prime Location', desc: 'Steps from the beach and Tedder Avenue.', image: '/img/home-embedded-5.jpg' },
-    { icon: 'building-2', title: 'Quality Building', desc: 'Well-maintained, with modern finishes throughout.', image: '/img/home-embedded-6.jpg' },
-    { icon: 'waves', title: 'Resort Amenities', desc: 'Pool, gym, and beautifully landscaped grounds.', image: '/img/home-embedded-7.jpg' },
-    { icon: 'users', title: 'Community', desc: 'Friendly, established long-term residents.', image: '/img/home-embedded-8.jpg', pos: 'center 72%' },
+    { icon: 'map-pin', title: 'Prime Location', desc: 'Steps from the beach and Tedder Avenue.', image: `${B}/img/home-embedded-5.jpg` },
+    { icon: 'building-2', title: 'Quality Building', desc: 'Well-maintained, with modern finishes throughout.', image: `${B}/img/home-embedded-6.jpg` },
+    { icon: 'waves', title: 'Resort Amenities', desc: 'Pool, gym, and beautifully landscaped grounds.', image: `${B}/img/home-embedded-7.jpg` },
+    { icon: 'users', title: 'Community', desc: 'Friendly, established long-term residents.', image: `${B}/img/home-embedded-8.jpg`, pos: 'center 72%' },
   ];
 
   const [active, setActive] = React.useState(0);
@@ -716,14 +718,14 @@ function QuoteBand() {
           position: 'relative',
           minHeight: 'clamp(320px, 40vw, 460px)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          backgroundImage: 'url("/img/home-embedded-9.jpg")',
+          backgroundImage: `url("${B}/img/home-embedded-9.jpg")`,
           backgroundSize: 'cover', backgroundPosition: 'center 55%',
           backgroundAttachment: 'fixed',
           paddingBottom: 'clamp(64px, 8vw, 130px)',
         }}>
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(28,38,44,0.46), rgba(28,38,44,0.60))' }} />
           <div className="reveal" style={{ position: 'relative', textAlign: 'center', padding: '0 var(--gutter)', maxWidth: 1100 }}>
-            <img src="/img/home-embedded-10.png" alt="" aria-hidden="true" style={{ width: 62, height: 'auto', opacity: 0.92, marginBottom: 22, filter: 'brightness(0) invert(1)' }} />
+            <img src={`${B}/img/home-embedded-10.png`} alt="" aria-hidden="true" style={{ width: 62, height: 'auto', opacity: 0.92, marginBottom: 22, filter: 'brightness(0) invert(1)' }} />
             <p className="lagoon-quote" style={{
               color: 'var(--lagoon-ocean-mist)', fontSize: 'clamp(1.2rem, 3.6vw, 3.1rem)',
               lineHeight: 1.15, margin: 0, letterSpacing: '0.02em',
@@ -801,9 +803,9 @@ function FeaturedResidences() {
 
 
   const items = [
-    { image: '/img/home-embedded-11.jpg', title: '1 Bedroom\nOcean View', price: '$520', period: 'week', tags: ['1 Bed', '1 Bath', '1 Parking'] },
-    { image: '/img/home-embedded-12.jpg', title: '2 Bedroom Coastal Retreat', price: '$720', period: 'week', tags: ['2 Bed', '2 Bath', '1 Parking'] },
-    { image: '/img/home-embedded-13.jpg', title: '3 Bedroom Premium Residence', price: '$950', period: 'week', tags: ['3 Bed', '2 Bath', '2 Parking'] },
+    { image: `${B}/img/home-embedded-11.jpg`, title: '1 Bedroom\nOcean View', price: '$520', period: 'week', tags: ['1 Bed', '1 Bath', '1 Parking'] },
+    { image: `${B}/img/home-embedded-12.jpg`, title: '2 Bedroom Coastal Retreat', price: '$720', period: 'week', tags: ['2 Bed', '2 Bath', '1 Parking'] },
+    { image: `${B}/img/home-embedded-13.jpg`, title: '3 Bedroom Premium Residence', price: '$950', period: 'week', tags: ['3 Bed', '2 Bath', '2 Parking'] },
   ];
 
   return (
@@ -899,7 +901,7 @@ function Footer() {
           </div>
         </div>
         {/* Aerial image — full height, edge to edge */}
-        <img src="/img/home-embedded-14.jpg" alt="" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        <img src={`${B}/img/home-embedded-14.jpg`} alt="" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       </div>
 
       {/* Columns */}
@@ -907,7 +909,7 @@ function Footer() {
         <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 1fr 1fr 1.2fr', gap: 'clamp(1.5rem, 3vw, 2.5rem)', alignItems: 'start' }} className="foot-grid">
           {/* Brand */}
           <div>
-            <img src="/img/home-embedded-15.svg" alt="Lagoon Main Beach" style={{ height: 92, marginBottom: 22, display: 'block' }} />
+            <img src={`${B}/img/home-embedded-15.svg`} alt="Lagoon Main Beach" style={{ height: 92, marginBottom: 22, display: 'block' }} />
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.7, color: 'rgba(244,243,239,0.72)', maxWidth: '34ch', margin: 0 }}>
               Premium long-term rentals and expert property management at Lagoon Main Beach.
             </p>

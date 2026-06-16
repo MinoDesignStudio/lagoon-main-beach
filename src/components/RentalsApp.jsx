@@ -321,7 +321,7 @@ function RentalsHero() {
     }}>
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0,
-        background: 'linear-gradient(180deg, rgba(20,30,38,0.55) 0%, rgba(20,30,38,0.50) 100%)',
+        background: 'radial-gradient(120% 90% at 50% 45%, rgba(20,30,38,0.66) 0%, rgba(20,30,38,0.58) 55%, rgba(20,30,38,0.50) 100%)',
       }} />
       <Wrap style={{ position: 'relative', width: '100%', paddingBlock: 'clamp(7rem, 14vw, 11rem)', textAlign: 'center' }}>
         <div className="reveal in" style={{ margin: '0 auto', maxWidth: 680 }}>

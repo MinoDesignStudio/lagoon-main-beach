@@ -338,7 +338,7 @@ function ProcessFlow({ eyebrow, title, steps, bg }) {
                 boxShadow: 'var(--shadow-brand)', marginBottom: 22,
               }}>{s.n}</div>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem, 1.5vw, 1.3rem)', fontWeight: 400, color: 'var(--lagoon-tide)', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 8px' }}>{s.title}</h3>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', fontWeight: 300, lineHeight: 1.55, margin: 0, maxWidth: '22ch' }}>{s.desc}</p>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', fontWeight: 300, lineHeight: 1.6, margin: 0, maxWidth: '22ch' }}>{s.desc}</p>
             </div>
           ))}
         </div>

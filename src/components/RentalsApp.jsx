@@ -557,8 +557,13 @@ function TenantJourney() {
         </div>
         <div className="reveal journey-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'clamp(24px, 3vw, 40px)' }}>
           {steps.map((s) => (
-            <div key={s.n} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+            <div key={s.n} className="step-item" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <span className="step-line" aria-hidden="true" style={{
+                position: 'absolute', top: 37, left: '50%', width: 'calc(100% + clamp(24px, 3vw, 40px))',
+                height: 2, background: 'rgba(66,115,128,0.28)', zIndex: 0,
+              }} />
               <div style={{
+                position: 'relative', zIndex: 1,
                 width: 74, height: 74, borderRadius: '50%',
                 background: 'var(--lagoon-tide)', color: 'var(--lagoon-ocean-mist)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -566,12 +571,22 @@ function TenantJourney() {
                 boxShadow: 'var(--shadow-brand)', marginBottom: 22,
               }}>{s.n}</div>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem, 1.5vw, 1.3rem)', fontWeight: 400, color: 'var(--lagoon-tide)', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 8px' }}>{s.title}</h3>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--text-muted)', fontWeight: 300, lineHeight: 1.55, margin: 0, maxWidth: '20ch' }}>{s.desc}</p>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', fontWeight: 300, lineHeight: 1.6, margin: 0, maxWidth: '20ch' }}>{s.desc}</p>
             </div>
           ))}
         </div>
       </Wrap>
-      <style>{`@media(max-width:760px){.journey-grid{grid-template-columns:1fr 1fr !important;row-gap:2.8rem !important;}}@media(max-width:430px){.journey-grid{grid-template-columns:1fr !important;}}`}</style>
+      <style>{`
+        .journey-grid .step-item:nth-child(4n) .step-line, .journey-grid .step-item:last-child .step-line { display: none; }
+        @media(max-width:760px){
+          .journey-grid{ grid-template-columns:1fr 1fr !important; row-gap:2.8rem !important; }
+          .journey-grid .step-item:nth-child(2n) .step-line, .journey-grid .step-item:last-child .step-line { display: none; }
+        }
+        @media(max-width:430px){
+          .journey-grid{ grid-template-columns:1fr !important; }
+          .journey-grid .step-item .step-line { display: none !important; }
+        }
+      `}</style>
     </section>
   );
 }

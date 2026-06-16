@@ -33,7 +33,7 @@ function Tag({ children, tone = 'tide', variant = 'soft', ...rest }) {
     <span style={{
       display: 'inline-flex', alignItems: 'center', gap: '6px',
       background: bg, color: fg,
-      fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '11px',
+      fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '12px',
       letterSpacing: '0.12em', textTransform: 'uppercase',
       padding: '6px 13px', borderRadius: 'var(--radius-pill)', lineHeight: 1, whiteSpace: 'nowrap',
     }} {...rest}>{children}</span>
@@ -45,7 +45,7 @@ function Button({
   iconRight = null, iconLeft = null, as = 'button', style: styleOverride, ...rest
 }) {
   const sizes = {
-    sm: { padding: '8px 18px', fontSize: '11px', tracking: '0.16em' },
+    sm: { padding: '11px 20px', fontSize: '12px', tracking: '0.16em' },
     md: { padding: '13px 28px', fontSize: '12px', tracking: '0.18em' },
     lg: { padding: '17px 38px', fontSize: '13px', tracking: '0.2em' },
   };
@@ -189,7 +189,7 @@ function Nav() {
         </div>
 
         <button aria-label="Menu" style={{
-          justifySelf: 'end', gridColumn: 3, display: 'none', background: 'none', border: 'none',
+          justifySelf: 'end', gridColumn: 3, display: 'none', background: 'none', border: 'none', padding: '9px', margin: '-9px', alignItems: 'center', justifyContent: 'center',
           cursor: 'pointer', color: onHero ? 'var(--lagoon-ocean-mist)' : 'var(--lagoon-ink)',
         }} onClick={() => setMenuOpen(m => !m)} className="nav-burger"><Icon name={menuOpen ? 'x' : 'menu'} size={26} /></button>
       </div>
@@ -390,7 +390,7 @@ function ResidenceCard({ image, title = 'Residence', location = null, price, per
 
       <div style={{ padding: '20px 22px 24px', display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-          {location && <span style={{ fontFamily: 'var(--font-body)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{location}</span>}
+          {location && <span style={{ fontFamily: 'var(--font-body)', fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{location}</span>}
           <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 25, lineHeight: 1.12, letterSpacing: 'var(--ls-feature)', textTransform: 'uppercase', margin: 0, color: 'var(--text-body)', whiteSpace: 'pre-line' }}>{title}</h3>
         </div>
 

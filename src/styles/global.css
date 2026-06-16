@@ -1,0 +1,99 @@
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url(/fonts/font-1-ac6944e9.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url(/fonts/font-2-6cc01798.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+      font-family: 'Siena';
+      src: url('/fonts/font-3-cf513ad6.woff2') format('woff2');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    :root {
+      --lagoon-ocean-mist: #F4F3EF; --lagoon-sea-foam: #C9CFD0; --lagoon-swell: #8BA0A0;
+      --lagoon-tide: #427380; --lagoon-dusty-coral: #D5BFAA; --lagoon-ink: #343D43;
+      --lagoon-tide-700: #34606B; --lagoon-tide-300: #6E96A0; --lagoon-swell-200: #B9C7C7;
+      --lagoon-ink-700: #232a2f; --lagoon-coral-600: #B79A7C; --lagoon-paper-soft: #FAFAF7;
+      --lagoon-white: #FFFFFF;
+      --surface-page: var(--lagoon-ocean-mist); --surface-card: var(--lagoon-white);
+      --surface-raised: var(--lagoon-paper-soft); --surface-inverse: var(--lagoon-ink);
+      --surface-brand: var(--lagoon-tide); --surface-brand-soft: var(--lagoon-swell);
+      --surface-subtle: var(--lagoon-sea-foam);
+      --text-body: var(--lagoon-ink); --text-muted: #5E6A70;
+      --text-on-brand: var(--lagoon-ocean-mist); --text-on-inverse: var(--lagoon-ocean-mist);
+      --text-accent: var(--lagoon-tide); --text-coral: var(--lagoon-coral-600);
+      --border-hairline: rgba(52,61,67,0.14); --border-strong: rgba(52,61,67,0.30);
+      --border-on-brand: rgba(244,243,239,0.30); --border-coral: var(--lagoon-dusty-coral);
+      --accent: var(--lagoon-tide); --accent-hover: var(--lagoon-tide-700);
+      --accent-contrast: var(--lagoon-ocean-mist); --focus-ring: rgba(66,115,128,0.40);
+      --font-display: 'Siena', Georgia, 'Times New Roman', serif;
+      --font-feature: var(--font-display);
+      --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-ui: var(--font-body);
+      --fw-light: 300; --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700;
+      --text-display-xl: clamp(3rem,6vw,5.25rem); --text-display-l: clamp(2.25rem,4vw,3.5rem);
+      --text-display-m: clamp(1.75rem,3vw,2.5rem); --text-display-s: clamp(1.4rem,2vw,1.85rem);
+      --text-xs: 0.75rem; --text-sm: 0.8125rem; --text-base: 0.9375rem;
+      --text-md: 1.0625rem; --text-lg: 1.25rem;
+      --lh-tight: 1.08; --lh-display: 1.14; --lh-snug: 1.4; --lh-body: 1.65;
+      --ls-eyebrow: 0.32em; --ls-caps: 0.18em; --ls-feature: 0.04em;
+      --ls-wide: 0.06em; --ls-normal: 0.01em; --ls-display: -0.01em;
+      --space-0:0; --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem;
+      --space-5:1.5rem; --space-6:2rem; --space-7:3rem; --space-8:4rem; --space-9:6rem; --space-10:8rem;
+      --radius-xs:0px; --radius-sm:0px; --radius-md:0px; --radius-lg:0px; --radius-xl:0px;
+      --radius-pill:0px; --radius-arch: 50% 50% 0 0 / 70% 70% 0 0;
+      --shadow-xs:0 1px 2px rgba(52,61,67,0.06); --shadow-sm:0 2px 10px rgba(52,61,67,0.07);
+      --shadow-md:0 10px 30px -12px rgba(52,61,67,0.18);
+      --shadow-lg:0 26px 60px -24px rgba(52,61,67,0.26);
+      --shadow-brand:0 18px 40px -18px rgba(66,115,128,0.45);
+      --border-width:1px; --container-max:1200px; --container-text:64ch;
+      --gutter:clamp(1.25rem,5vw,5rem);
+      --ease-out:cubic-bezier(0.22,0.61,0.36,1); --ease-soft:cubic-bezier(0.4,0.0,0.2,1);
+      --dur-fast:160ms; --dur-base:280ms; --dur-slow:520ms;
+    }
+    *{box-sizing:border-box;} html{scroll-behavior:smooth;}
+    body{margin:0;font-family:var(--font-body);font-size:var(--text-md);line-height:var(--lh-body);
+      font-weight:var(--fw-regular);color:var(--text-body);background:var(--surface-page);
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
+    h1,h2{font-family:var(--font-display);font-weight:var(--fw-regular);line-height:var(--lh-tight);
+      letter-spacing:var(--ls-feature);text-transform:uppercase;color:var(--text-body);
+      margin:0 0 0.4em;text-wrap:balance;}
+    h3,h4{font-family:var(--font-body);font-weight:var(--fw-semibold);line-height:var(--lh-snug);
+      letter-spacing:var(--ls-normal);color:var(--text-body);margin:0 0 0.4em;text-wrap:balance;}
+    p{margin:0 0 1em;text-wrap:pretty;} a{color:var(--text-accent);text-decoration:none;}
+    .lagoon-eyebrow{font-family:var(--font-body);font-weight:var(--fw-medium);font-size:var(--text-xs);
+      letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-accent);}
+    .lagoon-display{font-family:var(--font-display);font-weight:var(--fw-regular);
+      text-transform:uppercase;letter-spacing:var(--ls-feature);line-height:var(--lh-tight);}
+    .lagoon-quote{font-family:var(--font-display);font-weight:var(--fw-regular);
+      text-transform:uppercase;letter-spacing:var(--ls-feature);line-height:var(--lh-display);}
+    .lagoon-feature{font-family:var(--font-display);font-weight:var(--fw-regular);
+      text-transform:uppercase;letter-spacing:var(--ls-feature);line-height:var(--lh-tight);}
+    :where(a,button,input,select,textarea,[tabindex]):focus-visible{
+      outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius-xs);}
+    .wrap{max-width:var(--container-max);margin:0 auto;padding-inline:var(--gutter);}
+    .wave{display:block;width:100%;height:clamp(64px,8vw,130px);}
+    .wave svg{display:block;width:100%;height:100%;}
+    @keyframes rise{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+    .reveal{opacity:0;} .reveal.in{animation:rise 0.9s var(--ease-out) forwards;}
+    @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;animation:none!important;}}
+    .lucide,[data-lucide]{width:26px;height:26px;stroke-width:1.4;}
+    a.navlink{position:relative;}
+    main p,footer p,blockquote,.lagoon-lead{font-weight:300;}
+    main p{letter-spacing:0.005em;}
+    a.navlink::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;
+      background:currentColor;transform:scaleX(0);transform-origin:left;
+      transition:transform var(--dur-base) var(--ease-out);opacity:.7;}
+    a.navlink:hover::after{transform:scaleX(1);}
+    @media(max-width:900px){.nav-links,.nav-cta-desktop{display:none!important;}}

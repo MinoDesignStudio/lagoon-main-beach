@@ -111,7 +111,7 @@ function Nav() {
     { label: 'Rentals', href: `${B}/rentals/` },
     { label: 'Owners', href: `${B}/owners/` },
     { label: 'How we work', href: '#top' },
-    { label: 'About', href: '#' },
+    { label: 'About', href: `${B}/about/` },
     { label: 'Contact', href: `${B}/contact/` },
   ];
 

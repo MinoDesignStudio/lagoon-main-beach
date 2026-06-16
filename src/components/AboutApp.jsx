@@ -3,7 +3,7 @@ import { Icon } from './Icon.jsx';
 
 const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-/* Lagoon Contact Page - standalone. Mino Design and Digital. */
+/* Lagoon About Page - standalone. Mino Design and Digital. */
 const { useState, useEffect } = React;
 
 /* ─── Image constants ──────────────────────────────────────────────────────── */
@@ -92,6 +92,12 @@ function Wave({ fill = 'var(--lagoon-ocean-mist)', flip = false, height, style }
   );
 }
 
+function BIcon({ svg, size = 28 }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: svg }} />
+  );
+}
+
 /* ─── Nav ──────────────────────────────────────────────────────────────────── */
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -110,8 +116,8 @@ function Nav() {
     { label: 'Rentals', href: `${B}/rentals/` },
     { label: 'Owners', href: `${B}/owners/` },
     { label: 'How we work', href: `${B}/how-we-work/` },
-    { label: 'About', href: `${B}/about/` },
-    { label: 'Contact', href: '#top' },
+    { label: 'About', href: '#top' },
+    { label: 'Contact', href: `${B}/contact/` },
   ];
 
   return (
@@ -271,7 +277,7 @@ function Footer() {
 
 /* ─── Page Sections ────────────────────────────────────────────────────────── */
 
-function ContactHero() {
+function AboutHero() {
   return (
     <section id="top" style={{
       position: 'relative', minHeight: '46vh',
@@ -279,13 +285,13 @@ function ContactHero() {
       background: 'var(--lagoon-tide)',
     }}>
       <Wrap style={{ position: 'relative', width: '100%', paddingBlock: 'clamp(7rem, 14vw, 11rem)', textAlign: 'center' }}>
-        <div className="reveal in" style={{ margin: '0 auto', maxWidth: 720 }}>
+        <div className="reveal in" style={{ margin: '0 auto', maxWidth: 760 }}>
           <img src={FAVICON_LOGO} alt="" aria-hidden="true" style={{ height: 26, marginBottom: 20, opacity: 0.92, filter: 'brightness(0) invert(1)' }} />
           <h1 style={{ color: 'var(--lagoon-ocean-mist)', margin: '0 0 0.4em', fontSize: 'clamp(2rem, 4vw, 3.2rem)', lineHeight: 1.08 }}>
-            Get in Touch
+            About Lagoon Main Beach
           </h1>
           <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(244,243,239,0.88)', fontSize: 'var(--text-lg)', lineHeight: 1.55, maxWidth: '52ch', margin: '0 auto' }}>
-            Whether you're a tenant or an owner, we'd love to hear from you.
+            Elevated coastal living. Quality management. A genuine community.
           </p>
         </div>
       </Wrap>
@@ -294,106 +300,109 @@ function ContactHero() {
   );
 }
 
-function PathCard({ eyebrow, title, body, cta, href, tone = 'light', titleColor }) {
-  const tones = {
-    light: { bg: 'var(--lagoon-white)', fg: 'var(--text-body)', eb: 'tide', btn: 'primary' },
-    brand: { bg: 'var(--lagoon-tide)', fg: 'var(--lagoon-ocean-mist)', eb: 'mist', btn: 'inverse' },
-  };
-  const t = tones[tone] || tones.light;
-  return (
-    <div style={{
-      position: 'relative', background: t.bg, color: t.fg,
-      borderRadius: 'var(--radius-lg)', padding: '40px 38px',
-      boxShadow: tone === 'light' ? 'var(--shadow-md)' : 'var(--shadow-lg)',
-      overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: 18, minHeight: 248,
-    }}>
-      <Eyebrow color={t.eb}>{eyebrow}</Eyebrow>
-      <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 31, lineHeight: 1.05, letterSpacing: 'var(--ls-feature)', textTransform: 'uppercase', margin: 0, color: titleColor || t.fg, whiteSpace: 'nowrap' }}>{title}</h3>
-      <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.65, margin: 0, color: t.fg, opacity: tone === 'light' ? 0.78 : 0.85 }}>{body}</p>
-      <div style={{ marginTop: 'auto', paddingTop: 8 }}>
-        <Button as="a" href={href} variant={t.btn} size="sm">{cta}</Button>
-      </div>
-    </div>
-  );
-}
-
-function ContactPaths() {
+function OurStory() {
   return (
     <section style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(4rem, 7vw, 6.5rem)' }}>
       <Wrap>
-        <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(20px, 2.4vw, 32px)', maxWidth: 960, margin: '0 auto' }}>
-          <PathCard
-            tone="brand"
-            eyebrow="For Tenants"
-            title="Rent at Lagoon"
-            body="Looking for your next home by the beach? Send us an enquiry or book a viewing and our team will be in touch."
-            cta="Enquire as a Tenant"
-            href={`${B}/rentals/#contact`}
-          />
-          <PathCard
-            tone="light"
-            eyebrow="For Owners"
-            title="Let with Lagoon"
-            titleColor="var(--lagoon-tide)"
-            body="Want to maximise your investment with expert management? Request a proposal and we'll tailor it to your property."
-            cta="Enquire as an Owner"
-            href={`${B}/owners/#contact`}
-          />
+        <div className="reveal" style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+          <Eyebrow color="coral" align="center" style={{ marginBottom: 16 }}>Our Story</Eyebrow>
+          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: '0 0 0.8em' }}>Great management starts with genuine care.</h2>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(1.02rem, 1.5vw, 1.18rem)', lineHeight: 1.8, color: 'var(--text-muted)', fontWeight: 300, margin: '0 0 1.4rem' }}>
+            Lagoon Main Beach was created with a simple belief: that great property management starts with genuine care. Located in one of the Gold Coast's most sought-after addresses, we specialise in premium residential letting for owners who want the best for their investment - and for tenants who want to call Main Beach home.
+          </p>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(1.02rem, 1.5vw, 1.18rem)', lineHeight: 1.8, color: 'var(--text-muted)', fontWeight: 300, margin: 0 }}>
+            We're not a faceless agency. We're a small, dedicated team who knows every apartment, every owner, and every resident by name. That's how we like it. Our approach is hands-on, transparent, and always focused on long-term results.
+          </p>
         </div>
       </Wrap>
     </section>
   );
 }
 
-function ContactDetails() {
+function WhoManages() {
   const items = [
     {
-      label: 'Call us',
-      value: '07 3666 8609',
-      href: 'tel:0736668609',
-      svg: <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>,
+      title: 'Professional',
+      desc: 'Licensed, insured, and compliant with all Queensland tenancy legislation.',
+      svg: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>',
     },
     {
-      label: 'Email us',
-      value: 'reception@lagoonmainbeach.com',
-      href: 'mailto:reception@lagoonmainbeach.com',
-      svg: <><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>,
+      title: 'Local',
+      desc: 'Based at Main Beach. We know the market, the community, and the building inside out.',
+      svg: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>',
     },
     {
-      label: 'Visit us',
-      value: '11-23 Cronin Avenue, Main Beach QLD 4217',
-      href: 'https://maps.google.com/maps?q=11+Cronin+Avenue+Main+Beach+QLD+4217+Australia',
-      svg: <><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></>,
+      title: 'Responsive',
+      desc: 'When something needs attention, we act. No delays, no runaround.',
+      svg: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
     },
   ];
   return (
-    <section style={{ background: 'var(--lagoon-white)', paddingBlock: 'clamp(3.5rem, 6vw, 5.5rem)' }}>
+    <section style={{ background: 'var(--lagoon-white)', paddingBlock: 'clamp(4rem, 7vw, 6.5rem)' }}>
       <Wrap>
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: 'clamp(2.2rem, 4vw, 3rem)' }}>
-          <Eyebrow color="coral" align="center" style={{ marginBottom: 14 }}>Reach Us Directly</Eyebrow>
-          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: 0 }}>Prefer to call or email?</h2>
+        <div className="reveal" style={{ textAlign: 'center', maxWidth: 640, margin: '0 auto clamp(2.4rem, 5vw, 3.6rem)' }}>
+          <Eyebrow color="coral" align="center" style={{ marginBottom: 14 }}>Who Manages Lagoon</Eyebrow>
+          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: '0 0 0.6em' }}>A local team you can rely on.</h2>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.7, margin: 0 }}>
+            Our management team brings years of experience in Gold Coast residential property. We're local, responsive, and genuinely invested in every property we manage.
+          </p>
         </div>
-        <div className="reveal contact-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'clamp(24px, 3vw, 44px)' }}>
+        <div className="reveal manage-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'clamp(24px, 3vw, 44px)' }}>
           {items.map((it) => (
-            <a key={it.label} href={it.href} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', textDecoration: 'none' }}>
+            <div key={it.title} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
               <div style={{
                 width: 64, height: 64, borderRadius: '50%', background: 'rgba(66,115,128,0.10)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, color: 'var(--lagoon-tide)',
               }}>
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{it.svg}</svg>
+                <BIcon svg={it.svg} size={26} />
               </div>
-              <div style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--lagoon-tide)', marginBottom: 8 }}>{it.label}</div>
-              <div style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '24ch' }}>{it.value}</div>
-            </a>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem, 1.5vw, 1.3rem)', fontWeight: 400, color: 'var(--lagoon-tide)', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 10px' }}>{it.title}</h3>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.6, margin: 0, maxWidth: '26ch' }}>{it.desc}</p>
+            </div>
           ))}
         </div>
       </Wrap>
-      <style>{`@media(max-width:720px){.contact-grid{grid-template-columns:1fr !important;row-gap:2.6rem !important;}}`}</style>
+      <style>{`@media(max-width:760px){.manage-grid{grid-template-columns:1fr !important;row-gap:2.6rem !important;}}`}</style>
     </section>
   );
 }
 
-function ContactApp() {
+function OurValues() {
+  const items = [
+    { title: 'Care',                 desc: 'We treat every property as if it were our own.', svg: '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>' },
+    { title: 'Transparency',         desc: 'Honest communication, always.', svg: '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>' },
+    { title: 'Reliability',          desc: 'Dependable service you can count on.', svg: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+    { title: 'Premium Presentation', desc: 'High standards in everything we do.', svg: '<path d="m12 3 1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"/>' },
+  ];
+  return (
+    <section style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(4rem, 7vw, 7rem)' }}>
+      <Wrap>
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 0.85fr) minmax(0, 1.15fr)', gap: 'clamp(3rem, 5vw, 6rem)', alignItems: 'start' }} className="ov-grid">
+          <div className="reveal" style={{ position: 'sticky', top: 80 }}>
+            <div className="lagoon-eyebrow" style={{ color: 'var(--text-coral)', marginBottom: 18 }}>Our Values</div>
+            <h2 style={{ fontSize: 'clamp(2.2rem, 3.8vw, 3.2rem)', margin: '0 0 0.6em', color: 'var(--lagoon-tide)', lineHeight: 1.1 }}>What we stand for</h2>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '42ch', margin: '0 0 2rem', fontWeight: 300 }}>
+              The principles behind everything we do at Lagoon Main Beach.
+            </p>
+            <Button as="a" href={`${B}/contact/`} variant="primary" size="md">Get in Touch</Button>
+          </div>
+          <div className="reveal ov-items" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'clamp(1rem, 1.75vw, 1.5rem) clamp(2rem, 4vw, 3.5rem)' }}>
+            {items.map((item) => (
+              <div key={item.title} style={{ paddingTop: 'clamp(1.2rem, 2vw, 1.8rem)', borderTop: '1px solid var(--border-light)' }}>
+                <div style={{ marginBottom: 14, color: 'var(--lagoon-dusty-coral)' }}><BIcon svg={item.svg} /></div>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem, 1.4vw, 1.25rem)', fontWeight: 400, color: 'var(--lagoon-tide)', margin: '0 0 8px', letterSpacing: '0.05em', textTransform: 'uppercase', lineHeight: 1.2 }}>{item.title}</h3>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.65, margin: 0 }}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Wrap>
+      <style>{"@media (max-width: 820px){ .ov-grid{ grid-template-columns: 1fr !important; } .ov-grid > div:first-child { position: static !important; } } @media (max-width: 480px){ .ov-items{ grid-template-columns: 1fr !important; } }"}</style>
+    </section>
+  );
+}
+
+function AboutApp() {
   React.useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('in')),
@@ -406,13 +415,14 @@ function ContactApp() {
     <React.Fragment>
       <Nav />
       <main>
-        <ContactHero />
-        <ContactPaths />
-        <ContactDetails />
+        <AboutHero />
+        <OurStory />
+        <WhoManages />
+        <OurValues />
       </main>
       <Footer />
     </React.Fragment>
   );
 }
 
-export default ContactApp;
+export default AboutApp;

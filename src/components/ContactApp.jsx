@@ -3,12 +3,11 @@ import { Icon } from './Icon.jsx';
 
 const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-/* Lagoon How We Work Page - standalone. Mino Design and Digital. */
+/* Lagoon Contact Page - standalone. Mino Design and Digital. */
 const { useState, useEffect } = React;
 
 /* ─── Image constants ──────────────────────────────────────────────────────── */
 const FOOTER_CTA   = `${B}/img/owners-embedded-8.jpg`;
-const PARALLAX_IMG = `${B}/img/porte-cochere.jpg`;
 const FOOTER_LOGO  = `${B}/img/owners-embedded-9.svg`;
 const NAV_LOGO_W   = `${B}/img/owners-embedded-10.svg`;
 const NAV_LOGO_D   = `${B}/img/owners-embedded-11.svg`;
@@ -110,9 +109,9 @@ function Nav() {
   const navLinks = [
     { label: 'Rentals', href: `${B}/rentals/` },
     { label: 'Owners', href: `${B}/owners/` },
-    { label: 'How we work', href: '#top' },
+    { label: 'How we work', href: `${B}/how-we-work/` },
     { label: 'About', href: '#' },
-    { label: 'Contact', href: `${B}/contact/` },
+    { label: 'Contact', href: '#top' },
   ];
 
   return (
@@ -200,7 +199,7 @@ function Footer() {
             <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(244,243,239,0.75)', fontSize: 'var(--text-md)', lineHeight: 1.6, margin: 0, maxWidth: '44ch' }}>Whether you're looking to rent at Lagoon or exploring property management, we're here to help.</p>
           </div>
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-            <Button as="a" href={`${B}/rentals/`} variant="inverse" size="md">View Available Rentals</Button>
+            <Button as="a" href={`${B}/how-we-work/`} variant="inverse" size="md">See How We Work</Button>
           </div>
         </div>
         <img src={FOOTER_CTA} alt="Lagoon Main Beach aerial view" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
@@ -272,7 +271,7 @@ function Footer() {
 
 /* ─── Page Sections ────────────────────────────────────────────────────────── */
 
-function HowWeWorkHero() {
+function ContactHero() {
   return (
     <section id="top" style={{
       position: 'relative', minHeight: '46vh',
@@ -283,10 +282,10 @@ function HowWeWorkHero() {
         <div className="reveal in" style={{ margin: '0 auto', maxWidth: 720 }}>
           <img src={FAVICON_LOGO} alt="" aria-hidden="true" style={{ height: 26, marginBottom: 20, opacity: 0.92, filter: 'brightness(0) invert(1)' }} />
           <h1 style={{ color: 'var(--lagoon-ocean-mist)', margin: '0 0 0.4em', fontSize: 'clamp(2rem, 4vw, 3.2rem)', lineHeight: 1.08 }}>
-            How We Work
+            Get in Touch
           </h1>
           <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(244,243,239,0.88)', fontSize: 'var(--text-lg)', lineHeight: 1.55, maxWidth: '52ch', margin: '0 auto' }}>
-            Whether you're looking for your next home or entrusting us with your investment, here's what to expect.
+            Whether you're a tenant or an owner, we'd love to hear from you.
           </p>
         </div>
       </Wrap>
@@ -295,108 +294,106 @@ function HowWeWorkHero() {
   );
 }
 
-const TENANT_STEPS = [
-  { n: '1', title: 'Enquire',         desc: 'Browse listings and get in touch with any questions.' },
-  { n: '2', title: 'Inspect',         desc: 'Book a private viewing at a time that suits you.' },
-  { n: '3', title: 'Apply',           desc: 'Submit your application with supporting documents.' },
-  { n: '4', title: 'Approval',        desc: 'Quick, fair assessment with clear communication.' },
-  { n: '5', title: 'Lease',           desc: 'Sign your lease and receive your move-in guide.' },
-  { n: '6', title: 'Move In',         desc: "Welcome to Lagoon. We're here whenever you need us." },
-  { n: '7', title: 'Ongoing Support', desc: 'Responsive maintenance and a team that cares.' },
-];
-
-const OWNER_STEPS = [
-  { n: '1', title: 'Consultation',      desc: 'Discuss your property goals and expectations.' },
-  { n: '2', title: 'Appraisal',         desc: 'Market analysis and rental yield assessment.' },
-  { n: '3', title: 'Onboarding',        desc: 'Seamless setup with documentation and compliance.' },
-  { n: '4', title: 'Marketing',         desc: 'Professional photography and targeted advertising.' },
-  { n: '5', title: 'Leasing',           desc: 'Tenant screening, viewings, and lease execution.' },
-  { n: '6', title: 'Manage & Maintain', desc: 'Inspections, maintenance, and tenant relations.' },
-  { n: '7', title: 'Reporting',         desc: 'Monthly statements and transparent communication.' },
-];
-
-function ParallaxBand() {
-  const secRef = React.useRef(null);
-  const imgRef = React.useRef(null);
-  React.useEffect(() => {
-    const sec = secRef.current, img = imgRef.current;
-    if (!sec || !img) return;
-    let raf = null;
-    const update = () => {
-      raf = null;
-      const rect = sec.getBoundingClientRect();
-      const sectionCenter = rect.top + rect.height / 2;
-      const delta = window.innerHeight / 2 - sectionCenter;
-      const shift = Math.max(-70, Math.min(70, delta * 0.12));
-      img.style.transform = `translate3d(0, ${shift}px, 0)`;
-    };
-    const onScroll = () => { if (raf == null) raf = requestAnimationFrame(update); };
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
+function PathCard({ eyebrow, title, body, cta, href, tone = 'light', titleColor }) {
+  const tones = {
+    light: { bg: 'var(--lagoon-white)', fg: 'var(--text-body)', eb: 'tide', btn: 'primary' },
+    brand: { bg: 'var(--lagoon-tide)', fg: 'var(--lagoon-ocean-mist)', eb: 'mist', btn: 'inverse' },
+  };
+  const t = tones[tone] || tones.light;
   return (
-    <section ref={secRef} aria-hidden="true" style={{ position: 'relative', height: 'clamp(280px, 42vw, 520px)', overflow: 'hidden', background: 'var(--lagoon-ink)' }}>
-      <div ref={imgRef} style={{
-        position: 'absolute', top: -90, bottom: -90, left: 0, right: 0,
-        backgroundImage: `url("${PARALLAX_IMG}")`, backgroundSize: 'cover', backgroundPosition: 'center',
-        willChange: 'transform',
-      }} />
+    <div style={{
+      position: 'relative', background: t.bg, color: t.fg,
+      borderRadius: 'var(--radius-lg)', padding: '40px 38px',
+      boxShadow: tone === 'light' ? 'var(--shadow-md)' : 'var(--shadow-lg)',
+      overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: 18, minHeight: 248,
+    }}>
+      <Eyebrow color={t.eb}>{eyebrow}</Eyebrow>
+      <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 31, lineHeight: 1.05, letterSpacing: 'var(--ls-feature)', textTransform: 'uppercase', margin: 0, color: titleColor || t.fg, whiteSpace: 'nowrap' }}>{title}</h3>
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.65, margin: 0, color: t.fg, opacity: tone === 'light' ? 0.78 : 0.85 }}>{body}</p>
+      <div style={{ marginTop: 'auto', paddingTop: 8 }}>
+        <Button as="a" href={href} variant={t.btn} size="sm">{cta}</Button>
+      </div>
+    </div>
+  );
+}
+
+function ContactPaths() {
+  return (
+    <section style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(4rem, 7vw, 6.5rem)' }}>
+      <Wrap>
+        <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(20px, 2.4vw, 32px)', maxWidth: 960, margin: '0 auto' }}>
+          <PathCard
+            tone="brand"
+            eyebrow="For Tenants"
+            title="Rent at Lagoon"
+            body="Looking for your next home by the beach? Send us an enquiry or book a viewing and our team will be in touch."
+            cta="Enquire as a Tenant"
+            href={`${B}/rentals/#contact`}
+          />
+          <PathCard
+            tone="light"
+            eyebrow="For Owners"
+            title="Let with Lagoon"
+            titleColor="var(--lagoon-tide)"
+            body="Want to maximise your investment with expert management? Request a proposal and we'll tailor it to your property."
+            cta="Enquire as an Owner"
+            href={`${B}/owners/#contact`}
+          />
+        </div>
+      </Wrap>
     </section>
   );
 }
 
-function ProcessFlow({ eyebrow, title, steps, bg }) {
+function ContactDetails() {
+  const items = [
+    {
+      label: 'Call us',
+      value: '07 3666 8609',
+      href: 'tel:0736668609',
+      svg: <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>,
+    },
+    {
+      label: 'Email us',
+      value: 'reception@lagoonmainbeach.com',
+      href: 'mailto:reception@lagoonmainbeach.com',
+      svg: <><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>,
+    },
+    {
+      label: 'Visit us',
+      value: '11-23 Cronin Avenue, Main Beach QLD 4217',
+      href: 'https://maps.google.com/maps?q=11+Cronin+Avenue+Main+Beach+QLD+4217+Australia',
+      svg: <><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></>,
+    },
+  ];
   return (
-    <section style={{ background: bg, paddingBlock: 'clamp(4rem, 7vw, 6.5rem)' }}>
+    <section style={{ background: 'var(--lagoon-white)', paddingBlock: 'clamp(3.5rem, 6vw, 5.5rem)' }}>
       <Wrap>
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: 'clamp(2.4rem, 5vw, 4rem)' }}>
-          <Eyebrow color="coral" align="center" style={{ marginBottom: 14 }}>{eyebrow}</Eyebrow>
-          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: 0 }}>{title}</h2>
+        <div className="reveal" style={{ textAlign: 'center', marginBottom: 'clamp(2.2rem, 4vw, 3rem)' }}>
+          <Eyebrow color="coral" align="center" style={{ marginBottom: 14 }}>Reach Us Directly</Eyebrow>
+          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: 0 }}>Prefer to call or email?</h2>
         </div>
-        <div className="reveal process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'clamp(28px, 3vw, 44px) clamp(24px, 3vw, 40px)' }}>
-          {steps.map((s) => (
-            <div key={s.n} className="step-item" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <span className="step-line" aria-hidden="true" style={{
-                position: 'absolute', top: 37, left: '50%', width: 'calc(100% + clamp(24px, 3vw, 40px))',
-                height: 2, background: 'rgba(66,115,128,0.28)', zIndex: 0,
-              }} />
+        <div className="reveal contact-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'clamp(24px, 3vw, 44px)' }}>
+          {items.map((it) => (
+            <a key={it.label} href={it.href} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', textDecoration: 'none' }}>
               <div style={{
-                position: 'relative', zIndex: 1,
-                width: 74, height: 74, borderRadius: '50%',
-                background: 'var(--lagoon-tide)', color: 'var(--lagoon-ocean-mist)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'var(--font-display)', fontSize: 30, fontWeight: 400, lineHeight: 1,
-                boxShadow: 'var(--shadow-brand)', marginBottom: 22,
-              }}>{s.n}</div>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem, 1.5vw, 1.3rem)', fontWeight: 400, color: 'var(--lagoon-tide)', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 8px' }}>{s.title}</h3>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', fontWeight: 300, lineHeight: 1.6, margin: 0, maxWidth: '22ch' }}>{s.desc}</p>
-            </div>
+                width: 64, height: 64, borderRadius: '50%', background: 'rgba(66,115,128,0.10)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, color: 'var(--lagoon-tide)',
+              }}>
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{it.svg}</svg>
+              </div>
+              <div style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--lagoon-tide)', marginBottom: 8 }}>{it.label}</div>
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '24ch' }}>{it.value}</div>
+            </a>
           ))}
         </div>
       </Wrap>
-      <style>{`
-        .process-grid .step-item:nth-child(4n) .step-line, .process-grid .step-item:last-child .step-line { display: none; }
-        @media(max-width:760px){
-          .process-grid{ grid-template-columns:1fr 1fr !important; }
-          .process-grid .step-item:nth-child(4n) .step-line { display: block; }
-          .process-grid .step-item:nth-child(2n) .step-line, .process-grid .step-item:last-child .step-line { display: none; }
-        }
-        @media(max-width:430px){
-          .process-grid{ grid-template-columns:1fr !important; }
-          .process-grid .step-item .step-line { display: none !important; }
-        }
-      `}</style>
+      <style>{`@media(max-width:720px){.contact-grid{grid-template-columns:1fr !important;row-gap:2.6rem !important;}}`}</style>
     </section>
   );
 }
 
-function HowWeWorkApp() {
+function ContactApp() {
   React.useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('in')),
@@ -409,14 +406,13 @@ function HowWeWorkApp() {
     <React.Fragment>
       <Nav />
       <main>
-        <HowWeWorkHero />
-        <ProcessFlow eyebrow="For Tenants" title="Renting With Us" steps={TENANT_STEPS} bg="var(--lagoon-ocean-mist)" />
-        <ParallaxBand />
-        <ProcessFlow eyebrow="For Owners" title="Managing Your Property" steps={OWNER_STEPS} bg="var(--lagoon-white)" />
+        <ContactHero />
+        <ContactPaths />
+        <ContactDetails />
       </main>
       <Footer />
     </React.Fragment>
   );
 }
 
-export default HowWeWorkApp;
+export default ContactApp;

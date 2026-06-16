@@ -146,7 +146,7 @@ function Nav() {
     { label: 'Owners', href: '#top' },
     { label: 'How we work', href: `${B}/how-we-work/` },
     { label: 'About', href: '#' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Contact', href: `${B}/contact/` },
   ];
 
   return (

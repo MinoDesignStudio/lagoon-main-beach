@@ -388,7 +388,7 @@ function ServiceCard({
       display: 'flex', flexDirection: 'column', gap: 18, minHeight: 240,
     }}>
       <Eyebrow color={t.eb}>{eyebrow}</Eyebrow>
-      <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 31, lineHeight: 1.05, letterSpacing: 'var(--ls-feature)', textTransform: 'uppercase', margin: 0, color: titleColor || t.fg, whiteSpace: 'nowrap' }}>{title}</h3>
+      <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 31, lineHeight: 1.05, letterSpacing: 'var(--ls-feature)', textTransform: 'uppercase', margin: 0, color: titleColor || t.fg, whiteSpace: 'nowrap' }}>{title}</h2>
       <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.65, margin: 0, color: t.fg, opacity: tone === 'light' ? 0.78 : 0.85 }}>{body}</p>
       <div style={{ marginTop: 'auto', paddingTop: 8 }}>
         <Button as={href ? 'a' : 'button'} href={href} variant={t.btn} size="sm" onClick={onCta}>{cta}</Button>
@@ -562,7 +562,7 @@ function HeroServices() {
         <div aria-hidden="true" className="home-hero-scrim" style={{
           position: 'absolute', top: 0, left: 0, right: 0,
           height: 'calc(100vw * 0.367)',
-          background: 'linear-gradient(to right, rgba(20,30,38,0.60) 0%, rgba(20,30,38,0.35) 45%, rgba(20,30,38,0) 72%)',
+          background: 'linear-gradient(to right, rgba(20,30,38,0.74) 0%, rgba(20,30,38,0.50) 48%, rgba(20,30,38,0) 80%)',
         }} />
 
         <Wrap className="home-hero-wrap" style={{ position: 'relative', width: '100%', paddingTop: 96, paddingBottom: 100, display: 'flex', flexDirection: 'column' }}>
@@ -572,11 +572,11 @@ function HeroServices() {
               lineHeight: 1.04,
             }}>
               <span style={{ display: 'block', fontSize: 'clamp(2.1rem, 5.6vw, 5rem)' }}>Live the Beachside Life</span>
-              <span style={{ display: 'block', fontSize: 'clamp(1.3rem, 2.7vw, 2.35rem)', opacity: 0.92, marginTop: '0.35em', letterSpacing: '0.05em' }}>at Main Beach, Gold Coast</span>
+              <span style={{ display: 'block', fontSize: 'clamp(1.3rem, 2.7vw, 2.35rem)', opacity: 1, marginTop: '0.35em', letterSpacing: '0.05em' }}>at Main Beach, Gold Coast</span>
             </h1>
 
             <p style={{
-              fontFamily: 'var(--font-body)', color: 'var(--lagoon-ocean-mist)', opacity: 0.9,
+              fontFamily: 'var(--font-body)', color: 'var(--lagoon-ocean-mist)', opacity: 1,
               fontSize: 'var(--text-lg)', lineHeight: 1.55, maxWidth: '46ch', margin: '24px 0 36px',
 
             }}>
@@ -939,7 +939,7 @@ function Footer() {
 
           {cols.map((c) => (
             <nav key={c.h}>
-              <h4 style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: cream, margin: '0 0 12px', opacity: 0.9 }}>{c.h}</h4>
+              <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: cream, margin: '0 0 12px', opacity: 0.9 }}>{c.h}</h3>
               {c.links.map((l) => (
                 <a key={l} href={pageHrefs[l] || '#'} style={linkStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>{l}</a>
               ))}
@@ -948,7 +948,7 @@ function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: cream, margin: '0 0 12px', opacity: 0.9 }}>Contact</h4>
+            <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: cream, margin: '0 0 12px', opacity: 0.9 }}>Contact</h3>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.7, color: 'rgba(244,243,239,0.78)', margin: 0 }}>
               11 Cronin Avenue<br />Main Beach QLD 4217<br /><br />
               <span style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>

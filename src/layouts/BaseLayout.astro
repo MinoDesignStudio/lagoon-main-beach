@@ -1,6 +1,11 @@
 ---
 import '../styles/global.css';
 import { localBusiness, website } from '../lib/schema.js';
+// Preload the above-the-fold fonts so the browser fetches them in parallel with
+// the CSS (avoids the swap flash). ?url gives the hashed, base-aware path that
+// matches what the stylesheet requests, so it's cached as one download.
+import fontBody from '../fonts/font-2-6cc01798.woff2?url'; // Montserrat (latin)
+import fontDisplay from '../fonts/font-3-cf513ad6.woff2?url'; // Siena (headings)
 
 interface Props {
   title: string;
@@ -37,6 +42,8 @@ const GA_ID = '';
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preload" href={fontBody} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={fontDisplay} as="font" type="font/woff2" crossorigin />
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />

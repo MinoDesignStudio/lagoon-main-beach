@@ -13,7 +13,7 @@ export const business = {
   telephone: '+61 7 3666 8609',
   image: `${SITE}/img/hero-pano.jpg`,
   address: {
-    streetAddress: '11-23 Cronin Avenue',
+    streetAddress: '11 Cronin Avenue',
     addressLocality: 'Main Beach',
     addressRegion: 'QLD',
     postalCode: '4217',

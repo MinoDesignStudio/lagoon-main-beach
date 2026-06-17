@@ -218,7 +218,7 @@ function Footer() {
           <div>
             <h4 style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: cream, margin: '0 0 12px', opacity: 0.9 }}>Contact</h4>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.7, color: 'rgba(244,243,239,0.78)', margin: 0 }}>
-              11–23 Cronin Avenue<br />Main Beach QLD 4217<br /><br />
+              11 Cronin Avenue<br />Main Beach QLD 4217<br /><br />
               <span style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={cream} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 <a href="tel:0736668609" style={{ color: cream }}>07 3666 8609</a>
@@ -305,7 +305,7 @@ function PrivacyContent() {
 
           <h2 style={h2}>Who we are</h2>
           <p style={p}>
-            Lagoon Main Beach provides residential rental and property management services at 11-23 Cronin Avenue, Main Beach QLD 4217. If you have any questions about this policy or how we handle your information, you can contact us using the details at the end of this page.
+            Lagoon Main Beach provides residential rental and property management services at 11 Cronin Avenue, Main Beach QLD 4217. If you have any questions about this policy or how we handle your information, you can contact us using the details at the end of this page.
           </p>
 
           <h2 style={h2}>Information we collect</h2>
@@ -374,7 +374,7 @@ function PrivacyContent() {
           </p>
           <p style={p}>
             Lagoon Main Beach<br />
-            11-23 Cronin Avenue, Main Beach QLD 4217<br />
+            11 Cronin Avenue, Main Beach QLD 4217<br />
             Phone: <a style={a} href="tel:0736668609">07 3666 8609</a><br />
             Email: <a style={a} href="mailto:reception@lagoonmainbeach.com">reception@lagoonmainbeach.com</a>
           </p>

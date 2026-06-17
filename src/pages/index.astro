@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeApp from '../components/HomeApp.jsx';
+import { apartmentComplex } from '../lib/schema.js';
 ---
 <BaseLayout
   title="Lagoon Main Beach | Luxury Apartments, Main Beach Gold Coast"
   description="Premium long-term apartments for lease at Lagoon Main Beach, Gold Coast. 1, 2 and 3 bedroom residences with resort pool, gym and landscaped grounds."
   path="/"
+  schema={[apartmentComplex]}
 >
   <HomeApp client:load />
 </BaseLayout>

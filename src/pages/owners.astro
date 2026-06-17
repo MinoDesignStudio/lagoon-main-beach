@@ -1,11 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import OwnersApp from '../components/OwnersApp.jsx';
+import { faqPage, breadcrumb } from '../lib/schema.js';
+import { ownersFaqs } from '../lib/faqs.js';
 ---
 <BaseLayout
   title="Property Management Gold Coast | Lagoon Main Beach"
   description="Expert property management at Lagoon Main Beach, Gold Coast. Proactive care, premium tenant sourcing and transparent reporting for your investment."
   path="/owners/"
+  schema={[faqPage(ownersFaqs), breadcrumb([{ name: 'Home', path: '/' }, { name: 'Owners', path: '/owners/' }])]}
 >
   <OwnersApp client:load />
 </BaseLayout>

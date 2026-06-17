@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AboutApp from '../components/AboutApp.jsx';
+import { breadcrumb } from '../lib/schema.js';
 ---
 <BaseLayout
   title="About | Lagoon Main Beach - Main Beach, Gold Coast"
   description="At Lagoon Main Beach we are a small, local team delivering premium residential letting and property management at Main Beach, Gold Coast."
   path="/about/"
+  schema={[breadcrumb([{ name: 'Home', path: '/' }, { name: 'About', path: '/about/' }])]}
 >
   <AboutApp client:load />
 </BaseLayout>

@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PrivacyApp from '../components/PrivacyApp.jsx';
+import { breadcrumb } from '../lib/schema.js';
 ---
 <BaseLayout
   title="Privacy Policy | Lagoon Main Beach - Main Beach, Gold Coast"
   description="How Lagoon Main Beach collects, uses, holds, and protects your personal information, in line with the Australian Privacy Principles."
   path="/privacy/"
+  schema={[breadcrumb([{ name: 'Home', path: '/' }, { name: 'Privacy Policy', path: '/privacy/' }])]}
 >
   <PrivacyApp client:load />
 </BaseLayout>

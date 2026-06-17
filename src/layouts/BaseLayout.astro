@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { localBusiness, website } from '../lib/schema.js';
 
 interface Props {
   title: string;
@@ -8,9 +9,14 @@ interface Props {
   path: string;
   /** Optional per-page social image, relative to /img (e.g. "owners-embedded-2.jpg") */
   image?: string;
+  /** Page-specific JSON-LD blocks (e.g. ApartmentComplex, FAQPage, BreadcrumbList) */
+  schema?: object[];
 }
 
-const { title, description, path, image = 'hero-pano.jpg' } = Astro.props;
+const { title, description, path, image = 'hero-pano.jpg', schema = [] } = Astro.props;
+
+// LocalBusiness + WebSite render on every page; `schema` adds per-page blocks.
+const jsonLd = [localBusiness, website, ...schema];
 
 // The GitHub Pages build is a client-review preview: search engines must
 // never index it, and canonicals always point at the future live domain.
@@ -47,6 +53,9 @@ const GA_ID = '';
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
+{jsonLd.map((block) => (
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(block)} />
+))}
 {!isPagesPreview && GA_ID && (
   <>
     <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>

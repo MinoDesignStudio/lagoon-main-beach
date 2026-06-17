@@ -1,11 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import RentalsApp from '../components/RentalsApp.jsx';
+import { faqPage, breadcrumb } from '../lib/schema.js';
+import { rentalsFaqs } from '../lib/faqs.js';
 ---
 <BaseLayout
   title="Apartments for Rent at Main Beach | Lagoon Main Beach"
   description="Browse premium long-term apartments for lease at Lagoon Main Beach, Main Beach Gold Coast - 1, 2 and 3 bedroom residences steps from the sand."
   path="/rentals/"
+  schema={[faqPage(rentalsFaqs), breadcrumb([{ name: 'Home', path: '/' }, { name: 'Rentals', path: '/rentals/' }])]}
 >
   <RentalsApp client:load />
 </BaseLayout>

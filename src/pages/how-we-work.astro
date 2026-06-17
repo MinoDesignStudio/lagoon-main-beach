@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HowWeWorkApp from '../components/HowWeWorkApp.jsx';
+import { breadcrumb } from '../lib/schema.js';
 ---
 <BaseLayout
   title="How We Work | Lagoon Main Beach - Main Beach, Gold Coast"
   description="How renting and property management works at Lagoon Main Beach - a clear, step-by-step process for tenants and owners."
   path="/how-we-work/"
+  schema={[breadcrumb([{ name: 'Home', path: '/' }, { name: 'How We Work', path: '/how-we-work/' }])]}
 >
   <HowWeWorkApp client:load />
 </BaseLayout>

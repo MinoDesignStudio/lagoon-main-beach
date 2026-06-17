@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactApp from '../components/ContactApp.jsx';
+import { breadcrumb } from '../lib/schema.js';
 ---
 <BaseLayout
   title="Contact | Lagoon Main Beach - Main Beach, Gold Coast"
   description="Get in touch with Lagoon Main Beach. Tenants and owners can enquire, book a viewing, or reach our team by phone and email."
   path="/contact/"
+  schema={[breadcrumb([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact/' }])]}
 >
   <ContactApp client:load />
 </BaseLayout>

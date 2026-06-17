@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from './Icon.jsx';
+import { ownersFaqs } from '../lib/faqs.js';
 
 const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -547,14 +548,7 @@ function ContactForm() {
 
 function FAQSection() {
   const [open, setOpen] = React.useState(null);
-  const faqs = [
-    { q: 'What does your management fee include?', a: 'Our fee covers everything - tenant sourcing, routine inspections, rent collection, arrears management, maintenance coordination, monthly reporting, and ongoing owner communication. No surprises, no add-ons for the basics.' },
-    { q: 'How do you find and screen tenants?', a: "We market your property with professional photography and targeted listings, then run a thorough vetting process covering employment verification, rental history, and personal references. We don't just fill vacancies - we find the right fit." },
-    { q: 'How often is my property inspected?', a: 'We carry out routine inspections every 3 months, plus a detailed entry and exit condition report for every tenancy. You receive a copy of each report with photos.' },
-    { q: 'What happens if a tenant falls behind on rent?', a: 'We act immediately. Our arrears management process kicks in from day one of a missed payment - owners are kept informed throughout and we follow all legislative requirements for notices and escalation.' },
-    { q: 'How are maintenance requests handled?', a: "Tenants report issues through our system and we coordinate with our trusted contractor network. Minor repairs are actioned promptly. Anything above a set threshold (agreed with you upfront) is approved by you before we proceed." },
-    { q: 'How and when do I receive my rental income?', a: 'Rental funds are disbursed to your nominated account monthly, with a clear statement outlining income and any outgoings. You always know exactly where things stand.' },
-  ];
+  const faqs = ownersFaqs;
   const half = Math.ceil(faqs.length / 2);
   const cols = [faqs.slice(0, half), faqs.slice(half)];
   return (

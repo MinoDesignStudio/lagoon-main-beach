@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from './Icon.jsx';
+import { rentalsFaqs } from '../lib/faqs.js';
 
 const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -642,14 +643,7 @@ function ContactForm() {
 
 function FAQSection() {
   const [open, setOpen] = React.useState(null);
-  const faqs = [
-    { q: 'How do I apply for an apartment at Lagoon?', a: "Browse the featured residences, then send us an enquiry using the form above. We'll walk you through the application from there - a quick, clear process from search to move in." },
-    { q: 'Can I book an inspection before I apply?', a: 'Yes. Let us know your inspection preference when you enquire - a private viewing or an open inspection - and we will arrange a time that suits you.' },
-    { q: 'How long are the lease terms?', a: 'Lagoon Main Beach is focused on long-term residential living, with leases typically running 12 months. The exact term is confirmed with you during your application.' },
-    { q: 'What amenities and inclusions come with the apartment?', a: 'Residents enjoy resort-style amenities including the pool, gym and beautifully landscaped grounds, with secure parking available. Specific inclusions vary by apartment and are confirmed when you enquire.' },
-    { q: 'Are pets allowed?', a: "Pet applications are considered on a case-by-case basis. If you have a pet, let us know in your enquiry and we'll talk you through what's possible." },
-    { q: 'How are maintenance requests handled during my tenancy?', a: "Report any issue through our team and we'll coordinate repairs with our trusted local contractors, keeping you informed until everything is resolved." },
-  ];
+  const faqs = rentalsFaqs;
   const half = Math.ceil(faqs.length / 2);
   const cols = [faqs.slice(0, half), faqs.slice(half)];
   return (

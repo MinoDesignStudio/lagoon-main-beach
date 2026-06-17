@@ -6,9 +6,11 @@ interface Props {
   description: string;
   /** Canonical path on the live domain, e.g. "/" or "/owners/" */
   path: string;
+  /** Optional per-page social image, relative to /img (e.g. "owners-embedded-2.jpg") */
+  image?: string;
 }
 
-const { title, description, path } = Astro.props;
+const { title, description, path, image = 'hero-pano.jpg' } = Astro.props;
 
 // The GitHub Pages build is a client-review preview: search engines must
 // never index it, and canonicals always point at the future live domain.
@@ -17,6 +19,12 @@ const canonical = new URL(path, 'https://lagoonmainbeach.com');
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+// Absolute URL for social cards, resolved against the active site origin.
+const ogImage = new URL(`${base}img/${image}`, Astro.site);
+
+// GA4: set the Measurement ID (G-XXXXXXXXXX) before go-live. Left empty so
+// nothing loads until a real ID is in place; never loads on the preview build.
+const GA_ID = '';
 ---
 <!doctype html>
 <html lang="en-AU">
@@ -34,9 +42,22 @@ const base = import.meta.env.BASE_URL.endsWith('/')
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+{!isPagesPreview && GA_ID && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+    <script is:inline define:vars={{ GA_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+    </script>
+  </>
+)}
 </head>
 <body>
 <slot />

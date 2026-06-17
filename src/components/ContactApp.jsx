@@ -197,7 +197,7 @@ function Footer() {
         <div style={{ paddingBlock: 'clamp(3rem, 6vw, 5.5rem)', paddingLeft: 'calc(max(0px, (100vw - 1320px) / 2) + clamp(1.25rem, 4vw, 2.75rem))', paddingRight: 'clamp(1.5rem, 3vw, 3rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
           <div>
             <h2 style={{ color: cream, fontSize: 'clamp(1.8rem, 3.4vw, 2.9rem)', margin: '0 0 0.5em', maxWidth: '28ch' }}>Steps from the beach, minutes from Tedder Avenue.</h2>
-            <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(244,243,239,0.75)', fontSize: 'var(--text-md)', lineHeight: 1.6, margin: 0, maxWidth: '44ch' }}>Whether you're looking to rent at Lagoon or exploring property management, we're here to help.</p>
+            <p style={{ fontFamily: 'var(--font-body)', color: 'var(--lagoon-ocean-mist)', fontSize: 'var(--text-md)', lineHeight: 1.6, margin: 0, maxWidth: '44ch' }}>Whether you're looking to rent at Lagoon or exploring property management, we're here to help.</p>
           </div>
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
             <Button as="a" href={`${B}/how-we-work/`} variant="inverse" size="md">See How We Work</Button>
@@ -252,10 +252,10 @@ function Footer() {
 
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)', background: 'var(--lagoon-tide)' }}>
         <Wrap style={{ paddingBlock: 22, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: 12.5, color: 'rgba(244,243,239,0.6)' }}>© 2026 Lagoon Main Beach. All rights reserved.</span>
+          <span style={{ fontFamily: 'var(--font-body)', fontSize: 12.5, fontWeight: 500, color: 'var(--lagoon-ocean-mist)' }}>© 2026 Lagoon Main Beach. All rights reserved.</span>
           <div style={{ display: 'flex', gap: 22 }}>
             {['Privacy Policy'].map((l) => (
-              <a key={l} href={`${B}/privacy/`} style={{ fontFamily: 'var(--font-body)', fontSize: 12.5, color: 'rgba(244,243,239,0.6)' }} onMouseEnter={onEnter} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(244,243,239,0.6)'}>{l}</a>
+              <a key={l} href={`${B}/privacy/`} style={{ fontFamily: 'var(--font-body)', fontSize: 12.5, fontWeight: 500, color: 'var(--lagoon-ocean-mist)' }} onMouseEnter={onEnter} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--lagoon-ocean-mist)'}>{l}</a>
             ))}
           </div>
         </Wrap>

@@ -425,104 +425,7 @@ function Wave({ fill = 'var(--lagoon-ocean-mist)', flip = false, height, style }
 /* Lucide icon - re-renders the glyph after mount. */
 
 
-/* Fixed site navigation - blue logo left, links + two CTAs right. */
-const { useState: useStateNav, useEffect: useEffectNav } = React;
-
-function Nav() {
-
-  const [scrolled, setScrolled] = useStateNav(false);
-  const [menuOpen, setMenuOpen] = useStateNav(false);
-
-  useEffectNav(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const links = ['Rentals', 'Owners', 'How we work', 'About', 'Contact'];
-  const linkHrefs = { Rentals: `${B}/rentals/`, Owners: `${B}/owners/`, 'How we work': `${B}/how-we-work/`, About: `${B}/about/`, Contact: `${B}/contact/` };
-
-  const onHero = !scrolled; // transparent white nav over the hero image
-
-  return (
-    <header style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-      background: scrolled ? 'rgba(244,243,239,0.92)' : 'transparent',
-      backdropFilter: scrolled ? 'saturate(1.4) blur(14px)' : 'none',
-      WebkitBackdropFilter: scrolled ? 'saturate(1.4) blur(14px)' : 'none',
-      borderBottom: `1px solid ${scrolled ? 'var(--border-hairline)' : 'transparent'}`,
-      boxShadow: scrolled ? 'var(--shadow-sm)' : 'none',
-      transition: 'background var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out)',
-    }}>
-      <div style={{
-        maxWidth: 1320, margin: '0 auto', paddingInline: 'clamp(1.25rem, 4vw, 2.75rem)',
-        height: scrolled ? 80 : 98, display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 24,
-        transition: 'height var(--dur-base) var(--ease-out)',
-      }}>
-        {/* Logo */}
-        <a href="#top" aria-label="Lagoon Main Beach - home" style={{ display: 'flex', alignItems: 'center', justifySelf: 'start' }}>
-          <img src={onHero ? `${B}/img/home-embedded-2.svg` : `${B}/img/home-embedded-3.svg`} alt="Lagoon Main Beach" style={{ height: scrolled ? 48 : 60, transition: 'height var(--dur-base) var(--ease-out)', filter: onHero ? 'drop-shadow(0 1px 10px rgba(20,28,32,0.35))' : 'none' }} />
-        </a>
-
-        {/* Links (page-centred) */}
-        <nav className="nav-links" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 34 }}>
-          {links.map((l) => (
-            <a key={l} href={linkHrefs[l] || '#'} className="navlink" style={{
-              fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 13,
-              letterSpacing: '0.18em', textTransform: 'uppercase',
-              color: onHero ? 'var(--lagoon-ocean-mist)' : 'var(--lagoon-ink)',
-              textShadow: onHero ? '0 1px 10px rgba(20,28,32,0.4)' : 'none',
-              whiteSpace: 'nowrap', transition: 'color var(--dur-base) var(--ease-out)',
-            }}>{l}</a>
-          ))}
-        </nav>
-
-        {/* CTA */}
-        <div className="nav-cta-desktop" style={{ display: 'flex', alignItems: 'center', justifySelf: 'end' }}>
-          {onHero ? (
-            <Button as="a" href={`${B}/contact/`} variant="inverse" size="md" style={{ background: 'var(--lagoon-white)', color: 'var(--lagoon-tide)', border: '1px solid var(--lagoon-white)' }}>Book Now</Button>
-          ) : (
-            <Button as="a" href={`${B}/contact/`} variant="primary" size="md">Book Now</Button>
-          )}
-        </div>
-
-        {/* Mobile menu glyph */}
-        <button aria-label="Menu" style={{
-          justifySelf: 'end', gridColumn: 3, display: 'none', background: 'none', border: 'none', padding: '9px', margin: '-9px', alignItems: 'center', justifyContent: 'center',
-          cursor: 'pointer', color: onHero ? 'var(--lagoon-ocean-mist)' : 'var(--lagoon-ink)',
-        }} onClick={() => setMenuOpen(m => !m)} className="nav-burger"><Icon name={menuOpen ? 'x' : 'menu'} size={26} /></button>
-      </div>
-
-      <style>{`@media (max-width:900px){ .nav-burger{ display:inline-flex !important; } } .nav-burger .lucide{ width:50px !important; height:50px !important; }`}</style>
-      {menuOpen && (
-        <div style={{
-          position: 'absolute', top: '100%', left: 0, right: 0,
-          background: 'rgba(244,243,239,0.97)',
-          backdropFilter: 'saturate(1.4) blur(14px)',
-          WebkitBackdropFilter: 'saturate(1.4) blur(14px)',
-          borderBottom: '1px solid var(--border-hairline)',
-          boxShadow: 'var(--shadow-md)',
-          padding: '0.5rem clamp(1.25rem, 4vw, 2.75rem) 1.5rem',
-          display: 'flex', flexDirection: 'column',
-        }}>
-          {links.map((l) => (
-            <a key={l} href={linkHrefs[l] || '#'} onClick={() => setMenuOpen(false)} style={{
-              fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 15,
-              letterSpacing: '0.14em', textTransform: 'uppercase',
-              color: 'var(--lagoon-ink)', padding: '1rem 0',
-              borderBottom: '1px solid var(--border-hairline)',
-              textDecoration: 'none',
-            }}>{l}</a>
-          ))}
-          <div style={{ marginTop: '1.25rem' }}>
-            <Button as="a" href={`${B}/contact/`} variant="primary" size="md" style={{ width: '100%', justifyContent: 'center' }}>Book Now</Button>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
+/* Site nav + footer are provided site-wide by BaseLayout (see src/components/site/). */
 
 
 /* Hero (full-bleed pool) + Rent/Let service cards overlapping into a cream band. */
@@ -893,23 +796,10 @@ function Trust() {
 }
 
 
-/* Footer - Tide band with closing CTA, link columns and contact. */
-function Footer() {
-
+/* Page CTA band that sits above the shared SiteFooter. */
+function FooterCta() {
   const cream = 'var(--lagoon-ocean-mist)';
-
-  const cols = [
-    { h: 'Explore', links: ['Rentals', 'Owners', 'How We Work', 'About', 'Contact'] },
-  ];
-  const pageHrefs = { 'Rentals': `${B}/rentals/`, 'Owners': `${B}/owners/`, 'How We Work': `${B}/how-we-work/`, 'About': `${B}/about/`, 'Contact': `${B}/contact/` };
-
-  const linkStyle = { fontFamily: 'var(--font-body)', fontSize: 14, color: 'rgba(244,243,239,0.78)', display: 'block', padding: '7px 0', transition: 'color var(--dur-fast) var(--ease-out)' };
-  const onEnter = (e) => { e.currentTarget.style.color = cream; };
-  const onLeave = (e) => { e.currentTarget.style.color = 'rgba(244,243,239,0.78)'; };
-
   return (
-    <footer style={{ background: 'var(--lagoon-ink)', color: cream }}>
-      {/* Closing CTA */}
       <div className="foot-cta" style={{ borderBottom: '1px solid var(--border-on-brand)', background: 'var(--lagoon-tide)', display: 'grid', gridTemplateColumns: '1fr clamp(260px, 32vw, 500px)', overflow: 'hidden' }}>
         {/* Text + buttons */}
         <div style={{ paddingBlock: 'clamp(3rem, 6vw, 5.5rem)', paddingLeft: 'calc(max(0px, (100vw - 1320px) / 2) + clamp(1.25rem, 4vw, 2.75rem))', paddingRight: 'clamp(1.5rem, 3vw, 3rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
@@ -925,76 +815,6 @@ function Footer() {
         {/* Aerial image - full height, edge to edge */}
         <img src={`${B}/img/home-embedded-14.jpg`} alt="" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       </div>
-
-      {/* Columns */}
-      <Wrap style={{ paddingBlock: 'clamp(3rem, 5vw, 4.5rem)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 1fr 1fr 1.2fr', gap: 'clamp(1.5rem, 3vw, 2.5rem)', alignItems: 'start' }} className="foot-grid">
-          {/* Brand */}
-          <div>
-            <img src={`${B}/img/home-embedded-15.svg`} alt="Lagoon Main Beach" style={{ height: 92, marginBottom: 22, display: 'block' }} />
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.7, color: 'rgba(244,243,239,0.72)', maxWidth: '34ch', margin: 0 }}>
-              Premium long-term rentals and expert property management at Lagoon Main Beach.
-            </p>
-          </div>
-
-          {cols.map((c) => (
-            <nav key={c.h}>
-              <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: cream, margin: '0 0 12px', opacity: 0.9 }}>{c.h}</h3>
-              {c.links.map((l) => (
-                <a key={l} href={pageHrefs[l] || '#'} style={linkStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>{l}</a>
-              ))}
-            </nav>
-          ))}
-
-          {/* Contact */}
-          <div>
-            <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: cream, margin: '0 0 12px', opacity: 0.9 }}>Contact</h3>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.7, color: 'rgba(244,243,239,0.78)', margin: 0 }}>
-              11 Cronin Avenue<br />Main Beach QLD 4217<br /><br />
-              <span style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={cream} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:0736668609" style={{ color: cream }}>07 3666 8609</a>
-              </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 6 }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={cream} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                <a href="mailto:reception@lagoonmainbeach.com" style={{ color: cream }}>reception@lagoonmainbeach.com</a>
-              </span>
-            </p>
-          </div>
-
-          {/* Map */}
-          <div style={{ borderRadius: 4, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.12)', alignSelf: 'start', marginTop: 28 }}>
-            <iframe
-              src="https://maps.google.com/maps?q=11+Cronin+Avenue+Main+Beach+QLD+4217+Australia&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="220"
-              style={{ border: 0, display: 'block', filter: 'grayscale(25%) contrast(1.05)' }}
-              allowFullScreen
-              loading="lazy"
-              title="Lagoon Main Beach location"
-            />
-          </div>
-        </div>
-      </Wrap>
-
-      {/* Bottom bar */}
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)', background: 'var(--lagoon-tide)' }}>
-        <Wrap style={{ paddingBlock: 22, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: 12.5, fontWeight: 500, color: 'var(--lagoon-ocean-mist)' }}>© 2026 Lagoon Main Beach. All rights reserved.</span>
-          <div style={{ display: 'flex', gap: 22 }}>
-            {['Privacy Policy'].map((l) => (
-              <a key={l} href={`${B}/privacy/`} style={{ fontFamily: 'var(--font-body)', fontSize: 12.5, fontWeight: 500, color: 'var(--lagoon-ocean-mist)' }} onMouseEnter={onEnter} onMouseLeave={(e)=>e.currentTarget.style.color='var(--lagoon-ocean-mist)'}>{l}</a>
-            ))}
-          </div>
-        </Wrap>
-      </div>
-
-      <style>{`
-        @media (max-width: 900px){ .foot-grid{ grid-template-columns: 1fr 1fr !important; } }
-        @media (max-width: 520px){ .foot-grid{ grid-template-columns: 1fr !important; } }
-        @media (max-width: 680px){ .foot-cta{ grid-template-columns: 1fr !important; } .foot-cta > img { display: block !important; height: 220px !important; width: 100% !important; order: -1; } }
-      `}</style>
-    </footer>
   );
 }
 
@@ -1011,7 +831,6 @@ function App() {
   }, []);
   return (
     <div>
-      <Nav />
       <main>
         <HeroServices />
         <Owners />
@@ -1020,7 +839,7 @@ function App() {
         <OwnersBenefits />
         <FeaturedResidences />
       </main>
-      <Footer />
+      <FooterCta />
     </div>
   );
 }

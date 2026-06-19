@@ -1,10 +1,10 @@
 import React from 'react';
 const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-/* Lagoon How We Work Page - standalone. Mino Design and Digital. */
+/* Lagoon About Alcyone Page - standalone. Mino Design and Digital. */
 /* ─── Image constants ──────────────────────────────────────────────────────── */
 const FOOTER_CTA   = `${B}/img/owners-embedded-8.jpg`;
-const PARALLAX_IMG = `${B}/img/porte-cochere.jpg`;
+const PARALLAX_IMG = `${B}/img/hero-pano.jpg`;
 const FAVICON_LOGO = `${B}/img/owners-embedded-12.png`;
 
 /* ─── Shared components ────────────────────────────────────────────────────── */
@@ -86,30 +86,34 @@ function Wave({ fill = 'var(--lagoon-ocean-mist)', flip = false, height, style }
   );
 }
 
-/* ─── Footer CTA ───────────────────────────────────────────────────────────── */
+function BIcon({ svg, size = 28 }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: svg }} />
+  );
+}
+
+/* ─── Footer CTA band (page-specific; sits above the shared SiteFooter) ─────── */
 function FooterCta() {
   const cream = 'var(--lagoon-ocean-mist)';
-
   return (
     <div className="foot-cta" style={{ borderBottom: '1px solid var(--border-on-brand)', background: 'var(--lagoon-tide)', display: 'grid', gridTemplateColumns: '1fr clamp(260px, 32vw, 500px)', overflow: 'hidden' }}>
-      <div style={{ paddingBlock: 'clamp(3rem, 6vw, 5.5rem)', paddingLeft: 'calc(max(0px, (100vw - 1320px) / 2) + clamp(1.25rem, 4vw, 2.75rem))', paddingRight: 'clamp(1.5rem, 3vw, 3rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
-        <div>
-          <h2 style={{ color: cream, fontSize: 'clamp(1.8rem, 3.4vw, 2.9rem)', margin: '0 0 0.5em', maxWidth: '28ch' }}>Steps from the beach, minutes from Tedder Avenue.</h2>
-          <p style={{ fontFamily: 'var(--font-body)', color: 'var(--lagoon-ocean-mist)', fontSize: 'var(--text-md)', lineHeight: 1.6, margin: 0, maxWidth: '44ch' }}>Whether you're looking to rent at Lagoon or exploring property management, we're here to help.</p>
+        <div style={{ paddingBlock: 'clamp(3rem, 6vw, 5.5rem)', paddingLeft: 'calc(max(0px, (100vw - 1320px) / 2) + clamp(1.25rem, 4vw, 2.75rem))', paddingRight: 'clamp(1.5rem, 3vw, 3rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
+          <div>
+            <h2 style={{ color: cream, fontSize: 'clamp(1.8rem, 3.4vw, 2.9rem)', margin: '0 0 0.5em', maxWidth: '28ch' }}>Steps from the beach, minutes from Tedder Avenue.</h2>
+            <p style={{ fontFamily: 'var(--font-body)', color: 'var(--lagoon-ocean-mist)', fontSize: 'var(--text-md)', lineHeight: 1.6, margin: 0, maxWidth: '44ch' }}>Whether you're looking to rent at Lagoon or exploring property management, we're here to help.</p>
+          </div>
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+            <Button as="a" href={`${B}/how-we-work/`} variant="inverse" size="md">See How We Work</Button>
+          </div>
         </div>
-        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-          <Button as="a" href={`${B}/rentals/`} variant="inverse" size="md">View Available Rentals</Button>
-          <Button as="a" href={`${B}/owners/`} variant="secondary" size="md" style={{ color: cream, borderColor: 'var(--border-on-brand)' }}>Management for Owners</Button>
-        </div>
-      </div>
-      <img src={FOOTER_CTA} alt="Lagoon Main Beach aerial view" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        <img src={FOOTER_CTA} alt="Lagoon Main Beach aerial view" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
     </div>
   );
 }
 
 /* ─── Page Sections ────────────────────────────────────────────────────────── */
 
-function HowWeWorkHero() {
+function AlcyoneHero() {
   return (
     <section id="top" style={{
       position: 'relative', minHeight: '46vh',
@@ -117,13 +121,13 @@ function HowWeWorkHero() {
       background: 'var(--lagoon-tide)',
     }}>
       <Wrap style={{ position: 'relative', width: '100%', paddingBlock: 'clamp(7rem, 14vw, 11rem)', textAlign: 'center' }}>
-        <div className="reveal in" style={{ margin: '0 auto', maxWidth: 720 }}>
+        <div className="reveal in" style={{ margin: '0 auto', maxWidth: 760 }}>
           <img src={FAVICON_LOGO} alt="" aria-hidden="true" style={{ height: 26, marginBottom: 20, opacity: 0.92, filter: 'brightness(0) invert(1)' }} />
           <h1 style={{ color: 'var(--lagoon-ocean-mist)', margin: '0 0 0.4em', fontSize: 'clamp(2rem, 4vw, 3.2rem)', lineHeight: 1.08 }}>
-            How We Work
+            About Alcyone Group
           </h1>
           <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(244,243,239,0.88)', fontSize: 'var(--text-lg)', lineHeight: 1.55, maxWidth: '52ch', margin: '0 auto' }}>
-            Whether you're looking for your next home or entrusting us with your investment, here's what to expect.
+            Premium residential management by a professional operator.
           </p>
         </div>
       </Wrap>
@@ -132,25 +136,23 @@ function HowWeWorkHero() {
   );
 }
 
-const TENANT_STEPS = [
-  { n: '1', title: 'Enquire',         desc: 'Browse listings and get in touch with any questions.' },
-  { n: '2', title: 'Inspect',         desc: 'Book a private viewing at a time that suits you.' },
-  { n: '3', title: 'Apply',           desc: 'Submit your application with supporting documents.' },
-  { n: '4', title: 'Approval',        desc: 'Quick, fair assessment with clear communication.' },
-  { n: '5', title: 'Lease',           desc: 'Sign your lease and receive your move-in guide.' },
-  { n: '6', title: 'Move In',         desc: "Welcome to Lagoon. We're here whenever you need us." },
-  { n: '7', title: 'Ongoing Support', desc: 'Responsive maintenance and a team that cares.' },
-];
-
-const OWNER_STEPS = [
-  { n: '1', title: 'Consultation',      desc: 'Discuss your property goals and expectations.' },
-  { n: '2', title: 'Appraisal',         desc: 'Market analysis and rental yield assessment.' },
-  { n: '3', title: 'Onboarding',        desc: 'Seamless setup with documentation and compliance.' },
-  { n: '4', title: 'Marketing',         desc: 'Professional photography and targeted advertising.' },
-  { n: '5', title: 'Leasing',           desc: 'Tenant screening, viewings, and lease execution.' },
-  { n: '6', title: 'Manage & Maintain', desc: 'Inspections, maintenance, and tenant relations.' },
-  { n: '7', title: 'Reporting',         desc: 'Monthly statements and transparent communication.' },
-];
+function TheGroup() {
+  return (
+    <section style={{ background: 'var(--lagoon-ocean-mist)', paddingTop: 'clamp(2rem, 3.5vw, 3rem)', paddingBottom: 'clamp(4rem, 7vw, 6.5rem)' }}>
+      <Wrap>
+        <div className="reveal" style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: '0 0 0.8em' }}>Part of the Citimark Properties Group</h2>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(1.02rem, 1.5vw, 1.18rem)', lineHeight: 1.8, color: 'var(--text-muted)', fontWeight: 300, margin: '0 0 1.4rem' }}>
+            Alcyone Group is a Queensland-based management rights operator specialising in the management of premium residential apartment communities.
+          </p>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(1.02rem, 1.5vw, 1.18rem)', lineHeight: 1.8, color: 'var(--text-muted)', fontWeight: 300, margin: 0 }}>
+            The business forms part of the Citimark Properties Group, a privately owned developer and investment company with more than three decades of experience across residential, commercial and mixed-use developments.
+          </p>
+        </div>
+      </Wrap>
+    </section>
+  );
+}
 
 function ParallaxBand() {
   const secRef = React.useRef(null);
@@ -188,52 +190,70 @@ function ParallaxBand() {
   );
 }
 
-function ProcessFlow({ eyebrow, title, steps, bg }) {
+function Model() {
+  const items = [
+    {
+      title: 'Building management',
+      desc: 'Day-to-day oversight of the building, its services and common areas, held to a consistent operational standard.',
+      svg: '<path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/>',
+    },
+    {
+      title: 'Asset presentation',
+      desc: 'Maintaining the condition and appeal of each apartment and the wider community to protect long-term value.',
+      svg: '<path d="m12 3 1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"/>',
+    },
+    {
+      title: 'Structured residential leasing',
+      desc: 'A disciplined leasing process focused on tenant quality, stable occupancy and dependable income.',
+      svg: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/>',
+    },
+  ];
   return (
-    <section style={{ background: bg, paddingBlock: 'clamp(4rem, 7vw, 6.5rem)' }}>
+    <section style={{ background: 'var(--lagoon-white)', paddingBlock: 'clamp(4rem, 7vw, 6.5rem)' }}>
       <Wrap>
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: 'clamp(2.4rem, 5vw, 4rem)' }}>
-          <Eyebrow color="coral" align="center" style={{ marginBottom: 14 }}>{eyebrow}</Eyebrow>
-          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: 0 }}>{title}</h2>
+        <div className="reveal" style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto clamp(2.4rem, 5vw, 3.6rem)' }}>
+          <Eyebrow color="coral" align="center" style={{ marginBottom: 14 }}>Our Model</Eyebrow>
+          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: '0 0 0.6em' }}>A vertically integrated approach</h2>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.7, margin: 0 }}>
+            Through Alcyone, a vertically integrated property management model has been developed, combining three core disciplines.
+          </p>
         </div>
-        <div className="reveal process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'clamp(28px, 3vw, 44px) clamp(24px, 3vw, 40px)' }}>
-          {steps.map((s) => (
-            <div key={s.n} className="step-item" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <span className="step-line" aria-hidden="true" style={{
-                position: 'absolute', top: 37, left: '50%', width: 'calc(100% + clamp(24px, 3vw, 40px))',
-                height: 2, background: 'rgba(66,115,128,0.28)', zIndex: 0,
-              }} />
+        <div className="reveal manage-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'clamp(24px, 3vw, 44px)' }}>
+          {items.map((it) => (
+            <div key={it.title} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
               <div style={{
-                position: 'relative', zIndex: 1,
-                width: 74, height: 74, borderRadius: '50%',
-                background: 'var(--lagoon-tide)', color: 'var(--lagoon-ocean-mist)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'var(--font-display)', fontSize: 30, fontWeight: 400, lineHeight: 1,
-                boxShadow: 'var(--shadow-brand)', marginBottom: 22,
-              }}>{s.n}</div>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem, 1.5vw, 1.3rem)', fontWeight: 400, color: 'var(--lagoon-tide)', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 8px' }}>{s.title}</h3>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', fontWeight: 300, lineHeight: 1.6, margin: 0, maxWidth: '22ch' }}>{s.desc}</p>
+                width: 64, height: 64, borderRadius: '50%', background: 'rgba(66,115,128,0.10)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, color: 'var(--lagoon-tide)',
+              }}>
+                <BIcon svg={it.svg} size={26} />
+              </div>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem, 1.5vw, 1.3rem)', fontWeight: 400, color: 'var(--lagoon-tide)', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 10px' }}>{it.title}</h3>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.6, margin: 0, maxWidth: '26ch' }}>{it.desc}</p>
             </div>
           ))}
         </div>
       </Wrap>
-      <style>{`
-        .process-grid .step-item:nth-child(4n) .step-line, .process-grid .step-item:last-child .step-line { display: none; }
-        @media(max-width:760px){
-          .process-grid{ grid-template-columns:1fr 1fr !important; }
-          .process-grid .step-item:nth-child(4n) .step-line { display: block; }
-          .process-grid .step-item:nth-child(2n) .step-line, .process-grid .step-item:last-child .step-line { display: none; }
-        }
-        @media(max-width:430px){
-          .process-grid{ grid-template-columns:1fr !important; }
-          .process-grid .step-item .step-line { display: none !important; }
-        }
-      `}</style>
+      <style>{`@media(max-width:760px){.manage-grid{grid-template-columns:1fr !important;row-gap:2.6rem !important;}}`}</style>
     </section>
   );
 }
 
-function HowWeWorkApp() {
+function ClosingStatement() {
+  return (
+    <section style={{ background: 'var(--lagoon-white)', paddingTop: 0, paddingBottom: 'clamp(4rem, 7vw, 6.5rem)' }}>
+      <Wrap>
+        <div className="reveal" style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'var(--text-display-m)', color: 'var(--lagoon-tide)', margin: '0 0 0.8em' }}>How We Operate</h2>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(1.05rem, 1.6vw, 1.22rem)', lineHeight: 1.75, color: 'var(--text-muted)', fontWeight: 300, margin: 0 }}>
+            This model ensures that leasing, operations and presentation standards are managed in alignment, supporting consistent tenant quality, stable income and long-term asset performance.
+          </p>
+        </div>
+      </Wrap>
+    </section>
+  );
+}
+
+function AboutAlcyoneApp() {
   React.useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('in')),
@@ -245,14 +265,15 @@ function HowWeWorkApp() {
   return (
     <React.Fragment>
       <main>
-        <HowWeWorkHero />
-        <ProcessFlow eyebrow="For Tenants" title="Renting With Us" steps={TENANT_STEPS} bg="var(--lagoon-ocean-mist)" />
+        <AlcyoneHero />
+        <TheGroup />
         <ParallaxBand />
-        <ProcessFlow eyebrow="For Owners" title="Managing Your Property" steps={OWNER_STEPS} bg="var(--lagoon-white)" />
+        <Model />
+        <ClosingStatement />
       </main>
       <FooterCta />
     </React.Fragment>
   );
 }
 
-export default HowWeWorkApp;
+export default AboutAlcyoneApp;

@@ -15,4 +15,13 @@ export default defineConfig({
   trailingSlash: 'ignore',
   compressHTML: true,
   integrations: [react(), sitemap()],
+  vite: {
+    // Pre-bundle the React DOM client entry so Vite's dep optimizer exposes its
+    // named exports (createRoot/hydrateRoot). Without this, the deep CJS import
+    // is served via on-the-fly interop that fails to expose `createRoot`, which
+    // breaks client hydration in dev (React 19 + Vite optimizeDeps).
+    optimizeDeps: {
+      include: ['react-dom/client'],
+    },
+  },
 });

@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { Nav } from '../components/site/Nav.jsx';
+import { SiteFooter } from '../components/site/SiteFooter.jsx';
 import { localBusiness, website } from '../lib/schema.js';
 // Preload the above-the-fold fonts so the browser fetches them in parallel with
 // the CSS (avoids the swap flash). ?url gives the hashed, base-aware path that
@@ -16,9 +18,11 @@ interface Props {
   image?: string;
   /** Page-specific JSON-LD blocks (e.g. ApartmentComplex, FAQPage, BreadcrumbList) */
   schema?: object[];
+  /** Home page only: transparent nav over the hero image that turns solid on scroll. */
+  heroNav?: boolean;
 }
 
-const { title, description, path, image = 'hero-pano.jpg', schema = [] } = Astro.props;
+const { title, description, path, image = 'hero-pano.jpg', schema = [], heroNav = false } = Astro.props;
 
 // LocalBusiness + WebSite render on every page; `schema` adds per-page blocks.
 const jsonLd = [localBusiness, website, ...schema];
@@ -76,6 +80,8 @@ const GA_ID = '';
 )}
 </head>
 <body>
+<Nav client:load overHero={heroNav} />
 <slot />
+<SiteFooter client:load />
 </body>
 </html>

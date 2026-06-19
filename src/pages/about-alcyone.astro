@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AboutAlcyoneApp from '../components/AboutAlcyoneApp.jsx';
+import { breadcrumb } from '../lib/schema.js';
+---
+<BaseLayout
+  title="About Alcyone | Lagoon Main Beach - Main Beach, Gold Coast"
+  description="Alcyone Group is a Queensland-based management rights operator, part of the Citimark Properties Group, managing Lagoon Main Beach with a vertically integrated property management model."
+  path="/about-alcyone/"
+  schema={[breadcrumb([{ name: 'Home', path: '/' }, { name: 'About Alcyone', path: '/about-alcyone/' }])]}
+>
+  <AboutAlcyoneApp client:load />
+</BaseLayout>

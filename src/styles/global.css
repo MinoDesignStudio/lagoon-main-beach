@@ -97,3 +97,5 @@
       transition:transform var(--dur-base) var(--ease-out);opacity:.7;}
     a.navlink:hover::after{transform:scaleX(1);}
     @media(max-width:900px){.nav-links,.nav-cta-desktop{display:none!important;}}
+    @media(max-width:680px){.foot-cta{grid-template-columns:1fr!important;}
+      .foot-cta>img{display:block!important;height:220px!important;width:100%!important;order:-1;}}

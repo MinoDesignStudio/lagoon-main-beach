@@ -256,20 +256,20 @@ function BenefitsBand() {
     { title: 'Peace of Mind', items: ['Fully managed service - we handle everything', 'Regular inspections protect your asset long-term', 'Quality tenants reduce risk and wear', 'Responsive communication when you need it'] },
   ];
   return (
-    <section style={{ background: 'var(--lagoon-tide)', paddingBlock: 'clamp(4rem, 7vw, 7rem)' }}>
+    <section style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(4rem, 7vw, 7rem)' }}>
       <Wrap>
         <div className="reveal" style={{ textAlign: 'center', marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-          <div className="lagoon-eyebrow" style={{ color: 'var(--lagoon-dusty-coral)', marginBottom: 18 }}>How Owners Benefit</div>
-          <h2 style={{ fontSize: 'clamp(2rem, 3.6vw, 3rem)', color: 'var(--lagoon-ocean-mist)', margin: 0, lineHeight: 1.1 }}>Your investment, in good hands.</h2>
+          <div className="lagoon-eyebrow" style={{ color: 'var(--text-coral)', marginBottom: 18 }}>How Owners Benefit</div>
+          <h2 style={{ fontSize: 'clamp(2rem, 3.6vw, 3rem)', color: 'var(--lagoon-tide)', margin: 0, lineHeight: 1.1 }}>Your investment, in good hands.</h2>
         </div>
         <div className="reveal bb-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(2rem, 4vw, 4rem)' }}>
           {clusters.map((c) => (
             <div key={c.title}>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.2rem, 1.8vw, 1.5rem)', color: 'var(--lagoon-ocean-mist)', margin: '0 0 1.2rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{c.title}</h3>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.2rem, 1.8vw, 1.5rem)', color: 'var(--lagoon-tide)', margin: '0 0 1.2rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{c.title}</h3>
               <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
                 {c.items.map((item) => (
-                  <li key={item} style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'rgba(244,243,239,0.85)', display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                    <span style={{ color: 'var(--lagoon-dusty-coral)', flexShrink: 0, marginTop: 2 }}>&#10003;</span>
+                  <li key={item} style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)', color: 'var(--lagoon-tide)', display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                    <span style={{ color: 'var(--text-coral)', flexShrink: 0, marginTop: 2 }}>&#10003;</span>
                     {item}
                   </li>
                 ))}
@@ -282,38 +282,6 @@ function BenefitsBand() {
     </section>
   );
 }
-function Testimonials() {
-  const reviews = [
-    { quote: "Since switching to Lagoon, our apartment has been consistently tenanted with quality residents. The reporting is clear and the team genuinely cares.", name: 'Lagoon Apartment Owner', role: '2 Bedroom Apartment Owner' },
-    { quote: "Professional, responsive, and proactive. I wish I'd found Lagoon years ago. They've made property ownership stress-free.", name: 'Lagoon Apartment Owner', role: '1 Bedroom Apartment Owner' },
-  ];
-  const [active, setActive] = React.useState(0);
-  React.useEffect(() => {
-    const t = setInterval(() => setActive((a) => (a + 1) % reviews.length), 5000);
-    return () => clearInterval(t);
-  }, []);
-  const r = reviews[active];
-  return (
-    <section style={{ background: 'var(--lagoon-ocean-mist)', paddingBlock: 'clamp(4rem, 7vw, 7rem)' }}>
-      <Wrap>
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 4vw, 3rem)' }}>
-          <div className="lagoon-eyebrow" style={{ color: 'var(--text-coral)', marginBottom: 18 }}>What Owners Say</div>
-          <h2 style={{ fontSize: 'clamp(2rem, 3.6vw, 3rem)', color: 'var(--lagoon-tide)', margin: 0, lineHeight: 1.1 }}>Trusted by local property owners.</h2>
-        </div>
-        <div className="reveal" style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto' }}>
-          <p style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)', color: 'var(--lagoon-tide)', lineHeight: 1.7, margin: '0 0 1.6rem' }}>"{r.quote}"</p>
-          <div style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 15, color: 'var(--lagoon-tide)' }}>{r.name}</div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: '2rem' }}>
-            {reviews.map((_, i) => (
-              <button key={i} onClick={() => setActive(i)} aria-label={'Testimonial ' + (i + 1)} style={{ width: 10, height: 10, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: active === i ? 'var(--lagoon-tide)' : 'rgba(28,60,60,0.25)', transition: 'background var(--dur-base)' }} />
-            ))}
-          </div>
-        </div>
-      </Wrap>
-    </section>
-  );
-}
-
 function ContactForm() {
   const field = { fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--lagoon-ocean-mist)', background: 'transparent', border: '1px solid rgba(244,243,239,0.45)', borderRadius: 0, padding: '13px 14px', outline: 'none', width: '100%', boxSizing: 'border-box', display: 'block', appearance: 'auto' };
   const taStyle = { fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--lagoon-ocean-mist)', background: 'transparent', border: '1px solid rgba(244,243,239,0.45)', borderRadius: 0, padding: '13px 14px', outline: 'none', width: '100%', boxSizing: 'border-box', display: 'block', resize: 'vertical' };
@@ -430,7 +398,6 @@ function OwnersApp() {
         <ImageGallery />
         <ServicesGrid />
         <BenefitsBand />
-        <Testimonials />
         <ContactForm />
         <FAQSection />
       </main>

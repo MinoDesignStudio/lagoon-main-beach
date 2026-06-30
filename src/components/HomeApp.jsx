@@ -756,46 +756,6 @@ function FeaturedResidences() {
 }
 
 
-/* Trust bar - Tide band of headline stats. */
-function Trust() {
-  const stats = [
-    { value: '50+', label: 'Properties Managed' },
-    { value: '98%', label: 'Occupancy Rate' },
-    { value: '4.9', star: true, label: 'Owner Rating' },
-    { value: '10+', label: 'Years Local Experience' },
-  ];
-
-  const cream = 'var(--lagoon-ocean-mist)';
-
-  return (
-    <section style={{ background: 'var(--lagoon-tide)', color: cream, paddingBlock: 'clamp(3.5rem, 6vw, 5.5rem)' }}>
-      <Wrap>
-        <div className="reveal trust-stats" style={{
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'clamp(1.5rem, 3vw, 2.5rem)',
-          textAlign: 'center',
-        }}>
-          {stats.map((s) => (
-            <div key={s.label}>
-              <div className="lagoon-display" style={{ fontSize: 'clamp(2.6rem, 4.6vw, 3.8rem)', lineHeight: 1, color: cream, display: 'inline-flex', alignItems: 'flex-start', gap: 4 }}>
-                {s.value}{s.star && <span style={{ fontSize: '0.7em', lineHeight: 1.1, color: 'var(--lagoon-dusty-coral)' }}>★</span>}
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 12, letterSpacing: '0.16em',
-                textTransform: 'uppercase', color: 'rgba(244,243,239,0.72)', marginTop: 14,
-              }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </Wrap>
-
-      <style>{`
-        @media (max-width: 820px){ .trust-stats{ grid-template-columns: repeat(2,1fr) !important; row-gap: 2.6rem !important; } }
-      `}</style>
-    </section>
-  );
-}
-
-
 /* Page CTA band that sits above the shared SiteFooter. */
 function FooterCta() {
   const cream = 'var(--lagoon-ocean-mist)';
@@ -834,7 +794,6 @@ function App() {
       <main>
         <HeroServices />
         <Owners />
-        <Trust />
         <QuoteBand />
         <OwnersBenefits />
         <FeaturedResidences />
